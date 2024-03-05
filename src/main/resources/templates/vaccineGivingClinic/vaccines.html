@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="vaccineGivingClinic/clinicBase::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.3/components/charts/chart-2/assets/css/chart-2.css">
+
+    <title>Vaccines</title>
+</head>
+<body>
+
+    <section>
+
+
+        <form class="row gy-3 gy-lg-0 gx-lg-2 justify-content-center mb-2" style="margin-left: 7%;">
+            <div class="col-12 col-lg-3">
+                <label for="vaccineName" class="visually-hidden">Vaccine Name</label>
+                <input type="vaccineName" class="form-control bsb-form-control-3xl" id="vaccineName" value="" placeholder="Vaccine Name" aria-label="email-newsletter-component" aria-describedby="Vaccine Name" required>
+            </div>
+
+            <div class="col-12 col-lg-3">
+                <label for="Quantity" class="visually-hidden">Quantity</label>
+                <input type="number" class="form-control bsb-form-control-3xl" id="Quantity" value="" placeholder="Quantity" aria-label="email-newsletter-component" aria-describedby="Quantity" required>
+            </div>
+
+            <div class="col-12 col-lg-3">
+                <label for="expiredDate" class="visually-hidden">Expired Date</label>
+                <input type="date" class="form-control bsb-form-control-3xl" id="expiredDate" value="" placeholder="Expired Date" aria-label="email-newsletter-component" aria-describedby="Expired Date" required>
+            </div>
+
+            <div class="col-12 col-lg-3 text-center text-lg-start">
+                <button type="submit" class="btn btn-primary bsb-btn-3xl">Add Vaccine</button>
+            </div>
+        </form>
+
+
+
+        <!-- Chart 2 - Bootstrap Brain Component -->
+        <div class="">
+            <div class="">
+                <div class="row justify-content-center">
+                    <div class="">
+                        <div class="card widget-card border-light shadow-sm">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-borderless bsb-table-xl text-nowrap align-middle m-0">
+                                        <thead>
+                                        <tr>
+                                            <th>Invoice</th>
+                                            <th>Customer</th>
+                                            <th>Product</th>
+                                            <th>Price</th>
+                                            <th>Status</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <!--                                            <h6 class="mb-1">#DR8672</h6>-->
+                                                <span class="text-secondary fs-7">Web, UX Design</span>
+                                            </td>
+                                            <td>
+                                                <!--                                            <h6 class="mb-1">Emma</h6>-->
+                                                <span class="text-secondary fs-7">United Kingdom</span>
+                                            </td>
+                                            <td>
+                                                <!--                                            <h6 class="mb-1">WordPress</h6>-->
+                                                <span class="text-secondary fs-7">v6.3+</span>
+                                            </td>
+                                            <td>$950</td>
+                                            <td>
+                                                <button style="border-style: none" class="badge bg-success">View</button>
+                                            </td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="https://unpkg.com/bs-brain@2.0.3/components/charts/chart-2/assets/controller/chart-2.js"></script>
+
+</body>
+</html>

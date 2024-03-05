@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link th:href="@{/css/clinicBase.css}" rel="stylesheet">
+    <link th:href="@{/css/clinicRequests.css}" rel="stylesheet">
+
+    <script src="https://unpkg.com/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+
+    <section class="bg-light py-3 py-md-5 py-xl-8">
+
+        <div class="container ml-3">
+            <div class="row gy-4 gy-lg-0">
+                <div class="col-12 col-lg-2 col-xl-1">
+<!--                    <div class="row gy-4">-->
+<!--                        <div class="col-12">-->
+<!--                            <div class="card widget-card border-light shadow-sm">-->
+<!--                                <div class="card-header text-bg-primary">Welcome, Ethan Leo</div>-->
+<!--                                <div class="card-body">-->
+<!--                                    <div class="text-center mb-3">-->
+<!--                                        <img th:src="@{/images/profilePic3.png}" class="img-fluid rounded-circle" alt="Luna John">-->
+<!--                                    </div>-->
+<!--                                    <h5 class="text-center mb-1">Ethan Leo</h5>-->
+<!--                                    <p class="text-center text-secondary mb-4">Project Manager</p>-->
+<!--                                    <ul class="list-group list-group-flush mb-4">-->
+<!--                                        <li class="list-group-item d-flex justify-content-between align-items-center">-->
+<!--                                            <h6 class="m-0">Followers</h6>-->
+<!--                                            <span>7,854</span>-->
+<!--                                        </li>-->
+<!--                                        <li class="list-group-item d-flex justify-content-between align-items-center">-->
+<!--                                            <h6 class="m-0">Following</h6>-->
+<!--                                            <span>5,987</span>-->
+<!--                                        </li>-->
+<!--                                        <li class="list-group-item d-flex justify-content-between align-items-center">-->
+<!--                                            <h6 class="m-0">Friends</h6>-->
+<!--                                            <span>4,620</span>-->
+<!--                                        </li>-->
+<!--                                    </ul>-->
+<!--                                    <div class="d-grid m-0">-->
+<!--                                        <button class="btn btn-outline-primary" th:href="@{/logout}" type="button"> Logout </button>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                </div>
+
+                <div class="col-12 col-lg-10 col-xl-11">
+                    <div class="card widget-card border-light shadow-sm">
+                        <div class="card-body p-4">
+                            <ul class="nav nav-tabs justify-content-md-center" id="profileTab" role="tablist">
+                                <li class="nav-item">
+                                    <a id="userProfileOverview" class="nav-link" th:href="@{/clinicAuthority/pushVaccine}">Push</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" th:href="@{/clinicAuthority/vaccineQuantity}">Vaccines</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" th:href="@{/clinicAuthority/clinicRecords}">Records</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" th:href="@{/clinicAuthority/requests}">Requests</a> <!-- these are the requests which came from govtHospital/healthcare -->
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" th:href="@{/clinicAuthority/clinicProfile}">Profile</a> <!-- these are the requests which came from govtHospital/healthcare -->
+                                </li>
+
+
+
+                            </ul>
+
+                            <div class="tab-content pt-4" id="profileTabContent">
+
+                                <div th:replace="${content}">
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+    <script th:src="@{/js/clinicBase.js}"> </script>
+
+</body>
+</html>

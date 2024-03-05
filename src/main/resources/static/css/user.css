@@ -1,0 +1,182 @@
+.navbar{
+    margin-top: 2%;
+    height: 90px;
+    box-shadow: 4px 4px 8px 5px rgba(0, 0, 0, 0.2), 6px 6px 20px 10px rgba(0, 0, 0, 0.19);
+}
+
+.nav-item{
+    margin-right: 30px;
+}
+
+.navbar img{
+    /*margin-top: 2%;*/
+    width: 60px;
+    height: 60px;
+    margin-left: 100px ;
+    margin-right: 10px;
+}
+
+.navbar-nav{
+    margin-right: 100px;
+}
+
+.contents{
+    margin-top: 5%;
+    background-image: url("../images/bg2.jpg");
+    height: 600px;
+    /*width: 100%;*/
+    max-width: 100%;
+    /*width: 1280px;*/
+    background-size: 100% 100%;
+    box-shadow: 0px 0px 40px 30px #e5e5e5;
+    border-radius: 8px;
+}
+
+/*jokhon screen er size maximum 1280px hobe ba tar theke kom thakbe tokhon*/
+@media screen and (max-width: 1280px){
+    .contents{
+        height: 500px;
+    }
+}
+
+/*jokhon screen er size minimum 1500px hobe ba tar theke beshi hobe*/
+@media screen and (min-width: 1500px){
+    .contents{
+        height: 500px;
+    }
+}
+
+.lowerBox{
+    margin-top: -50px; !important;
+    margin-left: 100px;
+    height: 100px;
+    width: 900px;
+    background: #ffffff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 8px;
+}
+.item{
+    margin-top: 40px;
+}
+
+.lowerBox span{
+    margin-top: 40px;
+}
+
+.lowerBox .item{
+    margin-left: 45px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.number{
+    /*color: green;*/
+}
+
+.lowerBox .dash{
+    margin-left: 50px;
+}
+
+.functionButtons{
+    margin-top: 11%;
+}
+
+.box{
+    float: left;
+}
+
+.bigButton{
+    margin-right: 100px;
+    margin-left: 50%;
+}
+
+.bigButton button{
+    height: 215px;
+    width: 230px;
+    border: none;
+    border-radius: 10px;
+    background-color: #f7fafc;
+}
+
+.buttons button{
+    margin-left: 95%;
+    margin-bottom: 6px;
+    height: 50px;
+    display: inline-block;
+    width: 230px;
+    border: none;
+    border-radius: 10px;
+    background-color: #f7fafc;
+}
+
+button:hover{
+    background-color: #cbd5e0;
+}
+
+.processHeadline{
+    margin-top: 5%;
+}
+
+.markBox{
+    height: 25px;
+    width: 6px;
+    margin-left: auto;
+    margin-top: 6%;
+    background: black;
+}
+
+.process{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+
+.bigButton button img{
+    height: 80px;
+    width: 80px;
+}
+
+.buttons button img{
+    height: 25px;
+    width: 25px;
+}
+
+.card img{
+    height: 100px;
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+.card-title{
+    text-align: center;
+}
+
+
+.text-small {
+    font-size: 0.9rem;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+a:hover, a:focus {
+    text-decoration: none;
+}
+
+.form-control {
+    background: #212529;
+    border-color: #545454;
+}
+
+.form-control:focus {
+    background: #212529;
+}
+
+footer {
+    background: #212529;
+}
