@@ -43,6 +43,12 @@ public class signUpController {
         return "";
     }
 
+    @RequestMapping(value = "/doClinicRegistration" , method = RequestMethod.POST)
+    public String registerClinic(@ModelAttribute("newUser")User user){
+        return "";
+    }
+
+
 
     //handler for registering user
     @RequestMapping(value = "/do_register", method = RequestMethod.POST)
