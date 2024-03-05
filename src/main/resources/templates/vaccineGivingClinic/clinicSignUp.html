@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.3/components/registrations/registration-9/assets/css/registration-9.css">
     <link rel="stylesheet" th:href="@{/css/signUp.css}">
 
-    <title>Document</title>
+    <title th:text="${title}"> </title>
 </head>
 <body>
 
@@ -43,6 +43,14 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="mb-4">
+
+                                    <!-- Alert message-->
+
+                                    <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+                                        <p class="text-center" th:text="${session.message.content}"> </p>
+                                        <th:block th:text="${#session.removeAttribute('message')}"> </th:block>
+                                    </div>
+
                                     <h2 class="h3">Registration [Clinic/Healthcare]</h2>
 
                                     <!-- Toggle Switch -->

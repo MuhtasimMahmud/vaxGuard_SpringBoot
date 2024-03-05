@@ -24,11 +24,23 @@ public class signUpController {
     private UserRepository userRepository;
 
 
-    @RequestMapping("/signUp")
-    public String signUP(Model model){
-        model.addAttribute("title", "Register Account");
+    @RequestMapping("/userSignUp")
+    public String userSignUP(Model model){
+        model.addAttribute("title", "User Register Account");
         model.addAttribute("user", new User());
-        return "signUp";
+        return "User/userSignUp";
+    }
+
+    @RequestMapping("clinicSignUp")
+    public String clinicSignUp(Model model){
+        model.addAttribute("title", "Clinic Register Account");
+        model.addAttribute("user", new User());
+        return "vaccineGivingClinic/clinicSignUp";
+    }
+
+    @RequestMapping(value = "/doUserRegistration" , method = RequestMethod.POST)
+    public String registerVaccineCandidateUser(@ModelAttribute("newUser")User user){
+        return "";
     }
 
 

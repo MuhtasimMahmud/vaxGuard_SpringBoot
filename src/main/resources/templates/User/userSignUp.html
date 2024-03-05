@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -8,14 +8,12 @@
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.3/components/registrations/registration-9/assets/css/registration-9.css">
     <link rel="stylesheet" th:href="@{/css/signUp.css}">
-    <title>Document</title>
+    <title th:text="${title}"></title>
 </head>
 <body>
 
     <!-- Registration 9 - Bootstrap Brain Component -->
     <section class="bg-primary background py-3 py-md-5 py-xl-12">
-
-
 
         <div class="container">
             <div class="row gy-4 align-items-center">
@@ -40,6 +38,13 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="mb-4">
+
+                                        <!-- Alert message-->
+                                        <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+                                            <p class="text-center" th:text="${session.message.content}"> </p>
+                                            <th:block th:text="${#session.removeAttribute('message')}"> </th:block>
+                                        </div>
+
                                         <h2 class="h3">Registration [User]</h2>
 
                                         <!-- Toggle Switch -->
@@ -47,20 +52,22 @@
                                             <input type="checkbox" id="toggleSwitch">
                                             <span class="slider"></span>
                                         </label>
-                                        <!-- Toggle Switch -->
+                                        <!-- Toggle Switch end -->
+
+
 
 <!--                                        <h3 class="fs-6 fw-normal text-secondary m-0">Enter your details to register</h3>-->
                                     </div>
                                 </div>
                             </div>
-                            <form>
+                            <form th:action="@{/doUserRegistration}" method="post" th:object="${newUser}">
                                 <div class="row gy-3 overflow-hidden">
 
                                     <!-- Name Field -->
                                     <div class="col-12">
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name" required>
-                                            <label for="firstName" class="form-label">Name</label>
+                                            <input type="text" class="form-control" name="name" id="name" placeholder="Name" required>
+                                            <label for="name" class="form-label">Name</label>
                                         </div>
                                     </div>
 
