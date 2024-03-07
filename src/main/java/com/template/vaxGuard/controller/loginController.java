@@ -21,4 +21,16 @@ public class loginController {
         return "login";
     }
 
+
+    // handle for hospital Login
+    @GetMapping("childBirthRegistration")
+    public String childBirthRegistration(){
+        return "GovtHospitalORhealthCareAuthority/childBirthRegistration";
+    }
+
+    @GetMapping("hospitalLogin")
+    public String hospitalLogin(){
+        return "hospitalLogin";
+    }
+
 }

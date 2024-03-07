@@ -3,6 +3,7 @@ package com.template.vaxGuard.controller;
 
 import com.template.vaxGuard.helper.Message;
 import com.template.vaxGuard.models.User;
+import com.template.vaxGuard.models.vaccineCandidate;
 import com.template.vaxGuard.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -37,16 +38,27 @@ public class signUpController {
         model.addAttribute("user", new User());
         return "vaccineGivingClinic/clinicSignUp";
     }
-
-    @RequestMapping(value = "/doUserRegistration" , method = RequestMethod.POST)
-    public String registerVaccineCandidateUser(@ModelAttribute("newUser")User user){
-        return "";
-    }
-
-    @RequestMapping(value = "/doClinicRegistration" , method = RequestMethod.POST)
-    public String registerClinic(@ModelAttribute("newUser")User user){
-        return "";
-    }
+//
+//    @RequestMapping(value = "/doUserRegistration" , method = RequestMethod.POST)
+//    public String registerVaccineCandidateUser(@ModelAttribute("newUser") vaccineCandidate user, Model model, HttpSession httpSession){
+//
+//        return "";
+//    }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//    @RequestMapping(value = "/doClinicRegistration" , method = RequestMethod.POST)
+//    public String registerClinic(@ModelAttribute("newUser")User user){
+//        return "";
+//    }
 
 
 
