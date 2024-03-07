@@ -1,9 +1,7 @@
 package com.template.vaxGuard.models;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
@@ -16,6 +14,7 @@ public class vaccineCandidate extends User{
     private Time birthTime;
     private String birthHospitalName;
     @Column(unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String birthID;
     @OneToMany
     private List<userTakenVaccines> takenVaccinesList;
