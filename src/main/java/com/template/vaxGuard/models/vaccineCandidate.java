@@ -7,14 +7,14 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class vaccineCandidate extends User{
+public class vaccineCandidate{
 
-    private String BabyName;
+    private String babyName;
     private Date birthDate;
     private Time birthTime;
     private String birthHospitalName;
-    @Column(unique = true)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String email;
+    @Id
     private String birthID;
     @OneToMany
     private List<userTakenVaccines> takenVaccinesList;
@@ -26,25 +26,31 @@ public class vaccineCandidate extends User{
         //Default Constructor
     }
 
-    public vaccineCandidate(String email, String role, String password, String babyName, Date birthDate, Time birthTime, String birthHospitalName, String birthID, List<userTakenVaccines> takenVaccinesList, List<userPendingVaccines> pendingVaccinesList) {
-        super.setRole(role);
-        super.setEmail(email);
-        super.setPassword(password);
-        BabyName = babyName;
+    public vaccineCandidate(String babyName, Date birthDate, Time birthTime, String birthHospitalName, String email, String birthID, List<userTakenVaccines> takenVaccinesList, List<userPendingVaccines> pendingVaccinesList) {
+        this.babyName = babyName;
         this.birthDate = birthDate;
         this.birthTime = birthTime;
         this.birthHospitalName = birthHospitalName;
+        this.email = email;
         this.birthID = birthID;
         this.takenVaccinesList = takenVaccinesList;
         this.pendingVaccinesList = pendingVaccinesList;
     }
 
     public String getBabyName() {
-        return BabyName;
+        return babyName;
     }
 
     public void setBabyName(String babyName) {
-        BabyName = babyName;
+        this.babyName = babyName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Date getBirthDate() {

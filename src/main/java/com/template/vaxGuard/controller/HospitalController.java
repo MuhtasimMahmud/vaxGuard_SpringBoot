@@ -1,8 +1,8 @@
 package com.template.vaxGuard.controller;
 
 import com.template.vaxGuard.helper.Message;
-import com.template.vaxGuard.models.pendingVaccineCandidateFromHospital;
-import com.template.vaxGuard.repositories.pendingVaccineCandidateRepository;
+import com.template.vaxGuard.models.pendingCandidateFromHospital;
+import com.template.vaxGuard.repositories.pendingCandidateFromHospitalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +16,7 @@ public class HospitalController {
 
 
     @Autowired
-    pendingVaccineCandidateRepository pendingVaccineCandidateRepository;
+    pendingCandidateFromHospitalRepository pendingCandidateRepository;
 
     @GetMapping("hospitalLogin")
     public String hospitalLogin(){
@@ -25,28 +25,32 @@ public class HospitalController {
 
     // handle for hospital Login
     @GetMapping("childBirthRegistration")
-    public String childBirthRegistration(){
+    public String childBirthRegistration(Model model){
+        model.addAttribute("pendingCandidate", new pendingCandidateFromHospital());
         return "GovtHospitalORhealthCareAuthority/childBirthRegistration";
     }
 
-    @GetMapping("do_pendingVaccineCandidateRegistration")
-    public String doRegistration(@ModelAttribute("pendingVaccineCandidate")pendingVaccineCandidateFromHospital pendingVaccineCandidateFromHospital, Model model, HttpSession httpSession){
+    @GetMapping("do_pendingCandidateRegistration")
+    public String do_pendingCandidateRegistration(@ModelAttribute("pendingCandidate")pendingCandidateFromHospital pendingCandidate, Model model, HttpSession session){
 
         try{
+            pendingCandidateFromHospital checkDuplicate = pendingCandidateRepository.findByEmail(pendingCandidate.getEmail());
+            if(checkDuplicate == null){
+                pendingCandidateFromHospital result = pendingCandidateRepository.save(pendingCandidate);
+                model.addAttribute("pendingCandidate", new pendingCandidateFromHospital());
+                session.setAttribute("message", new Message("Successfully Registered !!", "alert-success"));
 
-            if(pendingVaccineCandidateRepository.findByEmail(pendingVaccineCandidateFromHospital.getEmail()) == null){
-                pendingVaccineCandidateRepository.save(pendingVaccineCandidateFromHospital);
             }else{
-                model.addAttribute("pendingCandidate", pendingVaccineCandidateFromHospital);
-                httpSession.setAttribute("message", new Message("The email address is already in use!", "alert-danger"));
+                model.addAttribute("pendingCandidate", pendingCandidate);
+                session.setAttribute("message", new Message("Please change the email address. This address is already in use!!", "alert-danger"));
             }
-
             return "GovtHospitalORhealthCareAuthority/childBirthRegistration";
 
-        }catch (Exception e){
-            e.printStackTrace();
-            model.addAttribute("pendingCandidate", pendingVaccineCandidateFromHospital);
-            httpSession.setAttribute("message", new Message("Something went wrong !!" + e.getMessage(), "alert-danger"));
+
+        }catch (Exception exception){
+            exception.printStackTrace();
+            model.addAttribute("pendingCandidate", new pendingCandidateFromHospital());
+            session.setAttribute("message", new Message("Something went wrong!", "alert-danger"));
 
             return "GovtHospitalORhealthCareAuthority/childBirthRegistration";
         }

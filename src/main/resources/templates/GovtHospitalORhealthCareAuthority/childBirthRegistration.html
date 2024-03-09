@@ -29,25 +29,35 @@
             <div class="col-12 col-lg-9">
                 <div class="bg-white border rounded shadow-sm overflow-hidden">
 
-                    <form action="#!">
+                    <!-- Alert Message -->
+
+                    <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert" >
+                        <p class="text-center" th:text="${session.message.content}"> </p>
+                        <th:block th:text="${#session.removeAttribute('message')}"> </th:block>
+                    </div>
+
+
+
+                    <form action="#!" th:action="@{/do_pendingCandidateRegistration}" th:object="${pendingCandidate}">
                         <div class="row gy-4 gy-xl-5 p-4 p-xl-5">
+
                             <!-- Name -->
                             <div class="col-12 col-md-6">
                                 <label for="fullname" class="form-label">Baby Name <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="fullname" name="fullname" value="" required>
+                                <input type="text" class="form-control" id="fullname" name="fullname" th:value="${pendingCandidate.babyName}" required>
                             </div>
 
                             <!-- Father/Mother's Email -->
                             <div class="col-12 col-md-6">
                                 <label for="email" class="form-label">Father/Mother's Email <span class="text-danger">*</span></label>
-                                <input type="email" class="form-control" id="email" name="email" value="" required>
+                                <input type="email" class="form-control" id="email" name="email" th:value="${pendingCandidate.email}" required>
                             </div>
 
                             <!-- Birth Date -->
                             <div class="col-12 col-md-6">
                                 <label for="date" class="form-label">Birth Date <span class="text-danger">*</span></label>
                                 <div class="input-group">
-                                    <input type="date" class="form-control" id="date" name="date" value="" required>
+                                    <input type="date" class="form-control" id="date" name="date" th:value="${pendingCandidate.birthDate}" required>
                                 </div>
                             </div>
 
@@ -55,7 +65,7 @@
                             <div class="col-12 col-md-6">
                                 <label for="time" class="form-label">Birth Time <span class="text-danger">*</span> </label>
                                 <div class="input-group">
-                                    <input type="time" class="form-control" id="time" name="time" value="" required>
+                                    <input type="time" class="form-control" id="time" name="time" th:value="${pendingCandidate.birthTime}" required>
                                 </div>
                             </div>
 
@@ -63,7 +73,7 @@
                             <div class="col-12 col-md-6">
                                 <label for="hospitalName" class="form-label">Hospital Name <span class="text-danger">*</span></label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="hospitalName" name="hospitalName" value="" required>
+                                    <input type="text" class="form-control" id="hospitalName" name="hospitalName" th:value="${pendingCandidate.birthHospitalName}" required>
                                 </div>
                             </div>
 
