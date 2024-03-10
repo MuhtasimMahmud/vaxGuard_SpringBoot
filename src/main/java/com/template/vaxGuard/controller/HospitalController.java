@@ -31,14 +31,15 @@ public class HospitalController {
     }
 
     @GetMapping("do_pendingCandidateRegistration")
-    public String do_pendingCandidateRegistration(@ModelAttribute("pendingCandidate")pendingCandidateFromHospital pendingCandidate, Model model, HttpSession session){
+    public String do_pendingCandidateRegistration(@ModelAttribute("pendingCandidateObject")pendingCandidateFromHospital pendingCandidate, Model model, HttpSession session){
 
         try{
+
             pendingCandidateFromHospital checkDuplicate = pendingCandidateRepository.findByEmail(pendingCandidate.getEmail());
             if(checkDuplicate == null){
                 pendingCandidateFromHospital result = pendingCandidateRepository.save(pendingCandidate);
                 model.addAttribute("pendingCandidate", new pendingCandidateFromHospital());
-                session.setAttribute("message", new Message("Successfully Registered !!", "alert-success"));
+                session.setAttribute("message", new Message("Successfully Registered! Birth ID is : "+result.getBirthID(), "alert-success"));
 
             }else{
                 model.addAttribute("pendingCandidate", pendingCandidate);
@@ -50,7 +51,7 @@ public class HospitalController {
         }catch (Exception exception){
             exception.printStackTrace();
             model.addAttribute("pendingCandidate", new pendingCandidateFromHospital());
-            session.setAttribute("message", new Message("Something went wrong!", "alert-danger"));
+            session.setAttribute("message", new Message("Something went wrong!" + exception.getMessage(), "alert-danger"));
 
             return "GovtHospitalORhealthCareAuthority/childBirthRegistration";
         }

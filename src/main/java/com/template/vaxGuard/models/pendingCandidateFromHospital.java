@@ -17,13 +17,13 @@ public class pendingCandidateFromHospital{
     private String email;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String birthID;
+    private int birthID;
 
     public pendingCandidateFromHospital() {
 
     }
 
-    public pendingCandidateFromHospital(String babyName, Date birthDate, Time birthTime, String birthHospitalName, String email, String birthID) {
+    public pendingCandidateFromHospital(String babyName, Date birthDate, Time birthTime, String birthHospitalName, String email, int birthID) {
         this.babyName = babyName;
         this.birthDate = birthDate;
         this.birthTime = birthTime;
@@ -72,11 +72,11 @@ public class pendingCandidateFromHospital{
         this.email = email;
     }
 
-    public String getBirthID() {
+    public int getBirthID() {
         return birthID;
     }
 
-    public void setBirthID(String birthID) {
+    public void setBirthID(int birthID) {
         this.birthID = birthID;
     }
 }

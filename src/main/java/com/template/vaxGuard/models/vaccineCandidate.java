@@ -15,7 +15,7 @@ public class vaccineCandidate{
     private String birthHospitalName;
     private String email;
     @Id
-    private String birthID;
+    private int birthID;
     @OneToMany
     private List<userTakenVaccines> takenVaccinesList;
     @OneToMany
@@ -26,7 +26,7 @@ public class vaccineCandidate{
         //Default Constructor
     }
 
-    public vaccineCandidate(String babyName, Date birthDate, Time birthTime, String birthHospitalName, String email, String birthID, List<userTakenVaccines> takenVaccinesList, List<userPendingVaccines> pendingVaccinesList) {
+    public vaccineCandidate(String babyName, Date birthDate, Time birthTime, String birthHospitalName, String email, int birthID, List<userTakenVaccines> takenVaccinesList, List<userPendingVaccines> pendingVaccinesList) {
         this.babyName = babyName;
         this.birthDate = birthDate;
         this.birthTime = birthTime;
@@ -77,11 +77,11 @@ public class vaccineCandidate{
         this.birthHospitalName = birthHospitalName;
     }
 
-    public String getBirthID() {
+    public int getBirthID() {
         return birthID;
     }
 
-    public void setBirthID(String birthID) {
+    public void setBirthID(int birthID) {
         this.birthID = birthID;
     }
 

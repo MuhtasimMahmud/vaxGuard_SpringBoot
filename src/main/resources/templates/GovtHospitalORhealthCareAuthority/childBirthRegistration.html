@@ -38,13 +38,13 @@
 
 
 
-                    <form action="#!" th:action="@{/do_pendingCandidateRegistration}" th:object="${pendingCandidate}">
+                    <form action="#!" th:action="@{/do_pendingCandidateRegistration}" th:object="${pendingCandidateObject}">
                         <div class="row gy-4 gy-xl-5 p-4 p-xl-5">
 
                             <!-- Name -->
                             <div class="col-12 col-md-6">
-                                <label for="fullname" class="form-label">Baby Name <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="fullname" name="fullname" th:value="${pendingCandidate.babyName}" required>
+                                <label for="babyName" class="form-label">Baby Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="babyName" name="babyName" th:value="${pendingCandidate.babyName}" required>
                             </div>
 
                             <!-- Father/Mother's Email -->
@@ -55,25 +55,25 @@
 
                             <!-- Birth Date -->
                             <div class="col-12 col-md-6">
-                                <label for="date" class="form-label">Birth Date <span class="text-danger">*</span></label>
+                                <label for="birthDate" class="form-label">Birth Date <span class="text-danger">*</span></label>
                                 <div class="input-group">
-                                    <input type="date" class="form-control" id="date" name="date" th:value="${pendingCandidate.birthDate}" required>
+                                    <input type="date" class="form-control" id="birthDate" name="birthDate" th:value="${pendingCandidate.birthDate}" required>
                                 </div>
                             </div>
 
                             <!-- Birth Time -->
                             <div class="col-12 col-md-6">
-                                <label for="time" class="form-label">Birth Time <span class="text-danger">*</span> </label>
+                                <label for="birthTime" class="form-label">Birth Time <span class="text-danger">*</span> </label>
                                 <div class="input-group">
-                                    <input type="time" class="form-control" id="time" name="time" th:value="${pendingCandidate.birthTime}" required>
+                                    <input type="time" class="form-control" id="birthTime" name="birthTime" th:value="${pendingCandidate.birthTime}" required>
                                 </div>
                             </div>
 
                             <!-- Hospital Name -->
                             <div class="col-12 col-md-6">
-                                <label for="hospitalName" class="form-label">Hospital Name <span class="text-danger">*</span></label>
+                                <label for="birthHospitalName" class="form-label">Hospital Name <span class="text-danger">*</span></label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="hospitalName" name="hospitalName" th:value="${pendingCandidate.birthHospitalName}" required>
+                                    <input type="text" class="form-control" id="birthHospitalName" name="birthHospitalName" th:value="${pendingCandidate.birthHospitalName}" required>
                                 </div>
                             </div>
 
