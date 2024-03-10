@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Controller
 public class HospitalController {
@@ -32,13 +34,14 @@ public class HospitalController {
         return "GovtHospitalORhealthCareAuthority/childBirthRegistration";
     }
 
-    @RequestMapping(value = "do_pendingCandidateRegistration", method = RequestMethod.POST)
-    public String do_pendingCandidateRegistration(@ModelAttribute("pendingCandidateObject")pendingCandidateFromHospital pendingCandidate, Model model, HttpSession session){
+    @RequestMapping("do_pendingCandidateRegistration")
+    public String do_pendingCandidateRegistration(@ModelAttribute("pendingCandidate")pendingCandidateFromHospital pendingCandidate, Model model, HttpSession session){
 
         try{
 
             pendingCandidateFromHospital checkDuplicate = pendingCandidateRepository.findByEmail(pendingCandidate.getEmail());
             if(checkDuplicate == null){
+
                 pendingCandidateFromHospital result = pendingCandidateRepository.save(pendingCandidate);
                 model.addAttribute("pendingCandidate", new pendingCandidateFromHospital());
                 session.setAttribute("message", new Message("Successfully Registered! Birth ID is : "+result.getBirthID(), "alert-success"));
