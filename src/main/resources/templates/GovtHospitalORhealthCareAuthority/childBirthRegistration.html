@@ -38,7 +38,7 @@
 
 
 
-                    <form action="#!" th:action="@{/do_pendingCandidateRegistration}" th:object="${pendingCandidate}">
+                    <form action="#!" th:action="@{/do_pendingCandidateRegistration}" method="post" th:object="${pendingCandidate}">
                         <div class="row gy-4 gy-xl-5 p-4 p-xl-5">
 
                             <!-- Name -->
@@ -57,7 +57,7 @@
                             <div class="col-12 col-md-6">
                                 <label for="birthDate" class="form-label">Birth Date <span class="text-danger">*</span></label>
                                 <div class="input-group">
-                                    <input type="date" class="form-control" id="birthDate" name="birthDate" th:value="${pendingCandidate.birthDate}">
+                                    <input type="date" class="form-control" id="birthDate" name="birthDate" placeholder="YYYY:MM:DD" th:value="${pendingCandidate.birthDate}">
                                 </div>
                             </div>
 
@@ -65,7 +65,7 @@
                             <div class="col-12 col-md-6">
                                 <label for="birthTime" class="form-label">Birth Time <span class="text-danger">*</span> </label>
                                 <div class="input-group">
-                                    <input type="time" class="form-control" id="birthTime" name="birthTime" th:value="${pendingCandidate.birthTime}">
+                                    <input type="time" class="form-control" id="birthTime" name="birthTime" step="60" placeholder="HH:mm" th:value="${pendingCandidate.birthTime}">
                                 </div>
                             </div>
 

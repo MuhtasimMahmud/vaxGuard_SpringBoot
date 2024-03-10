@@ -11,8 +11,8 @@ import java.util.Date;
 public class pendingCandidateFromHospital{
 
     private String babyName;
-    private Date birthDate;
-    private Time birthTime;
+    private String birthDate;
+    private String birthTime;
     private String birthHospitalName;
     private String email;
     @Id
@@ -23,7 +23,7 @@ public class pendingCandidateFromHospital{
 
     }
 
-    public pendingCandidateFromHospital(String babyName, Date birthDate, Time birthTime, String birthHospitalName, String email, int birthID) {
+    public pendingCandidateFromHospital(String babyName, String birthDate, String birthTime, String birthHospitalName, String email, int birthID) {
         this.babyName = babyName;
         this.birthDate = birthDate;
         this.birthTime = birthTime;
@@ -40,19 +40,19 @@ public class pendingCandidateFromHospital{
         this.babyName = babyName;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 
-    public Time getBirthTime() {
+    public String getBirthTime() {
         return birthTime;
     }
 
-    public void setBirthTime(Time birthTime) {
+    public void setBirthTime(String birthTime) {
         this.birthTime = birthTime;
     }
 

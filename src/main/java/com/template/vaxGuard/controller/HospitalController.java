@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 
 @Controller
 public class HospitalController {
@@ -34,7 +37,7 @@ public class HospitalController {
         return "GovtHospitalORhealthCareAuthority/childBirthRegistration";
     }
 
-    @RequestMapping("do_pendingCandidateRegistration")
+    @RequestMapping(value = "do_pendingCandidateRegistration", method = RequestMethod.POST)
     public String do_pendingCandidateRegistration(@ModelAttribute("pendingCandidate")pendingCandidateFromHospital pendingCandidate, Model model, HttpSession session){
 
         try{
