@@ -1,19 +1,24 @@
 package com.template.vaxGuard.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Entity
 public class pendingCandidateFromHospital{
 
     private String babyName;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate birthDate;
-    private String birthTime;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    private LocalTime birthTime;
     private String birthHospitalName;
     private String email;
     @Id
@@ -24,7 +29,7 @@ public class pendingCandidateFromHospital{
 
     }
 
-    public pendingCandidateFromHospital(String babyName, LocalDate birthDate, String birthTime, String birthHospitalName, String email, int birthID) {
+    public pendingCandidateFromHospital(String babyName, LocalDate birthDate, LocalTime birthTime, String birthHospitalName, String email, int birthID) {
         this.babyName = babyName;
         this.birthDate = birthDate;
         this.birthTime = birthTime;
@@ -49,11 +54,11 @@ public class pendingCandidateFromHospital{
         this.birthDate = birthDate;
     }
 
-    public String getBirthTime() {
+    public LocalTime getBirthTime() {
         return birthTime;
     }
 
-    public void setBirthTime(String birthTime) {
+    public void setBirthTime(LocalTime birthTime) {
         this.birthTime = birthTime;
     }
 
