@@ -2,15 +2,18 @@ package com.template.vaxGuard.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.List;
 
 @Entity
-public class clinic extends User{
+public class clinic{
 
     private String name;
     @Column(unique = true)
     private String registrationNumber;
+    @Id
+    private String email;
     @OneToMany
     private List<clinicVaccines> vaccinesList;
     @OneToMany
@@ -18,19 +21,26 @@ public class clinic extends User{
     @OneToMany
     private List<vaccineCandidate> requests;
 
+
     public clinic(){
         //Default Constructor
     }
 
-    public clinic(String email, String role, String password, String name, String registrationNumber, List<clinicVaccines> vaccinesList, List<vaccineCandidate> records, List<vaccineCandidate> requests) {
-        super.setRole(role);
-        super.setEmail(email);
-        super.setPassword(password);
+    public clinic(String name, String registrationNumber, String email, List<clinicVaccines> vaccinesList, List<vaccineCandidate> records, List<vaccineCandidate> requests) {
         this.name = name;
         this.registrationNumber = registrationNumber;
+        this.email = email;
         this.vaccinesList = vaccinesList;
         this.records = records;
         this.requests = requests;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getName() {
