@@ -31,7 +31,7 @@ public class HospitalController {
     }
 
     @RequestMapping(value = "do_pendingCandidateRegistration", method = RequestMethod.POST)
-    public String do_pendingCandidateRegistration(@ModelAttribute("pendingCandidate")pendingCandidateFromHospital pendingCandidate,
+    public String do_pendingCandidateRegistration(@ModelAttribute("pendingCandidateObject")pendingCandidateFromHospital pendingCandidate,
                                                   @RequestParam("passcode")String passcode, Model model, HttpSession session){
 
         try{

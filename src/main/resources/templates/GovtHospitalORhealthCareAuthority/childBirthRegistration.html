@@ -38,7 +38,7 @@
 
 
 
-                    <form action="#!" th:action="@{/do_pendingCandidateRegistration}" method="post" th:object="${pendingCandidate}">
+                    <form action="#!" th:action="@{/do_pendingCandidateRegistration}" method="post" th:object="${pendingCandidateObject}">
                         <div class="row gy-4 gy-xl-5 p-4 p-xl-5">
 
                             <!-- Name -->
@@ -81,7 +81,7 @@
                             <div class="col-12 col-md-6">
                                 <label for="passcode" class="form-label">Passcode <span class="text-danger">*</span> </label>
                                 <div class="input-group">
-                                    <input type="password" class="form-control" id="passcode" name="passcode" value="">
+                                    <input type="password" class="form-control" id="passcode" name="passcode" value="Give the Secret passcode">
                                 </div>
                             </div>
 
