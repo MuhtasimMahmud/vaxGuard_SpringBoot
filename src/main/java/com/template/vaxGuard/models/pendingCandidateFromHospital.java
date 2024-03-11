@@ -5,13 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
 public class pendingCandidateFromHospital{
 
     private String babyName;
-    private String birthDate;
+    private LocalDate birthDate;
     private String birthTime;
     private String birthHospitalName;
     private String email;
@@ -23,7 +24,7 @@ public class pendingCandidateFromHospital{
 
     }
 
-    public pendingCandidateFromHospital(String babyName, String birthDate, String birthTime, String birthHospitalName, String email, int birthID) {
+    public pendingCandidateFromHospital(String babyName, LocalDate birthDate, String birthTime, String birthHospitalName, String email, int birthID) {
         this.babyName = babyName;
         this.birthDate = birthDate;
         this.birthTime = birthTime;
@@ -40,11 +41,11 @@ public class pendingCandidateFromHospital{
         this.babyName = babyName;
     }
 
-    public String getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(String birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
