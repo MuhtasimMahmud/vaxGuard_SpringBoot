@@ -1,8 +1,12 @@
 package com.template.vaxGuard.models;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -10,8 +14,10 @@ import java.util.List;
 public class vaccineCandidate{
 
     private String babyName;
-    private Date birthDate;
-    private Time birthTime;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate birthDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    private LocalTime birthTime;
     private String birthHospitalName;
     private String email;
     @Id
@@ -26,7 +32,7 @@ public class vaccineCandidate{
         //Default Constructor
     }
 
-    public vaccineCandidate(String babyName, Date birthDate, Time birthTime, String birthHospitalName, String email, int birthID, List<userTakenVaccines> takenVaccinesList, List<userPendingVaccines> pendingVaccinesList) {
+    public vaccineCandidate(String babyName, LocalDate birthDate, LocalTime birthTime, String birthHospitalName, String email, int birthID, List<userTakenVaccines> takenVaccinesList, List<userPendingVaccines> pendingVaccinesList) {
         this.babyName = babyName;
         this.birthDate = birthDate;
         this.birthTime = birthTime;
@@ -53,19 +59,19 @@ public class vaccineCandidate{
         this.email = email;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
-    public Time getBirthTime() {
+    public LocalTime getBirthTime() {
         return birthTime;
     }
 
-    public void setBirthTime(Time birthTime) {
+    public void setBirthTime(LocalTime birthTime) {
         this.birthTime = birthTime;
     }
 
