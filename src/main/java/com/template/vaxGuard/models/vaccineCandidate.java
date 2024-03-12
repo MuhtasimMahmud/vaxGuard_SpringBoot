@@ -4,9 +4,11 @@ package com.template.vaxGuard.models;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.servlet.http.PushBuilder;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,17 +24,19 @@ public class vaccineCandidate{
     private String email;
     @Id
     private int birthID;
+    private String vaccineTakingClinicName;
+
     @OneToMany
     private List<userTakenVaccines> takenVaccinesList;
     @OneToMany
     private List<userPendingVaccines> pendingVaccinesList;
 
-
     public vaccineCandidate(){
+
         //Default Constructor
     }
 
-    public vaccineCandidate(String babyName, LocalDate birthDate, LocalTime birthTime, String birthHospitalName, String email, int birthID, List<userTakenVaccines> takenVaccinesList, List<userPendingVaccines> pendingVaccinesList) {
+    public vaccineCandidate(String babyName, LocalDate birthDate, LocalTime birthTime, String birthHospitalName, String email, int birthID, List<userTakenVaccines> takenVaccinesList, List<userPendingVaccines> pendingVaccinesList, String vaccineTakingClinicName) {
         this.babyName = babyName;
         this.birthDate = birthDate;
         this.birthTime = birthTime;
@@ -41,6 +45,15 @@ public class vaccineCandidate{
         this.birthID = birthID;
         this.takenVaccinesList = takenVaccinesList;
         this.pendingVaccinesList = pendingVaccinesList;
+        this.vaccineTakingClinicName = vaccineTakingClinicName;
+    }
+
+    public String getVaccineTakingClinicName() {
+        return vaccineTakingClinicName;
+    }
+
+    public void setVaccineTakingClinicName(String vaccineTakingClinicName) {
+        this.vaccineTakingClinicName = vaccineTakingClinicName;
     }
 
     public String getBabyName() {

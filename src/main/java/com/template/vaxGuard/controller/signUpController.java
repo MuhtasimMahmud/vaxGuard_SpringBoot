@@ -4,6 +4,7 @@ package com.template.vaxGuard.controller;
 import com.template.vaxGuard.helper.Message;
 import com.template.vaxGuard.models.User;
 import com.template.vaxGuard.models.pendingCandidateFromHospital;
+import com.template.vaxGuard.models.userPendingVaccines;
 import com.template.vaxGuard.models.vaccineCandidate;
 import com.template.vaxGuard.repositories.UserRepository;
 import com.template.vaxGuard.repositories.pendingCandidateFromHospitalRepository;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class signUpController {
@@ -48,6 +51,8 @@ public class signUpController {
         model.addAttribute("user", new User());
         return "vaccineGivingClinic/clinicSignUp";
     }
+
+
 
 
     @RequestMapping("/doUserRegistration")
@@ -88,63 +93,21 @@ public class signUpController {
                 candidate.setBirthDate(pendingCandidate.getBirthDate());
                 candidate.setBirthTime(pendingCandidate.getBirthTime());
                 candidate.setBirthHospitalName(pendingCandidate.getBirthHospitalName());
+
+
                 vaccineCandidate resultCandidate = this.vaccineCandidateRepository.save(candidate);
 
 
                 session.setAttribute("message", new Message("Successfully Registered your account !!", "alert-success"));
                 model.addAttribute("user", new vaccineCandidate());
             }
-
             return "User/userSignUp";
-
         }catch (Exception exception){
             exception.printStackTrace();
             session.setAttribute("message", new Message("Something went wrong!!"+exception.getMessage(), "alert-danger"));
             model.addAttribute("user", new vaccineCandidate());
             return "User/userSignUp";
         }
-
-    }
-
-
-
-
-
-
-
-    //handler for registering user
-    @RequestMapping(value = "/do_register", method = RequestMethod.POST)
-    public String registerUser(@ModelAttribute("user") User user, Model model, HttpSession session){
-
-
-        try{
-
-            String role = "ROLE_"+user.getRole();
-            user.setRole(role);
-
-            User checkDuplicate = userRepository.findByEmail(user.getEmail());
-            if(checkDuplicate == null){
-                user.setPassword(passwordEncoder.encode(user.getPassword()));
-                User UserResult = this.userRepository.save(user);
-                model.addAttribute("user", new User());
-                session.setAttribute("message", new Message("Successfully Registered !!", "alert-success"));
-
-            }else{
-                model.addAttribute("user", user);
-                session.setAttribute("message", new Message("Please give an unique email address.", "alert-danger"));
-            }
-
-            return "signUp";
-
-
-        }catch (Exception e){
-            e.printStackTrace();
-            model.addAttribute("user", user);
-            session.setAttribute("message", new Message("Something went wrong !!" + e.getMessage(), "alert-danger"));
-
-            return "signUp";
-        }
-
     }
 
 }
