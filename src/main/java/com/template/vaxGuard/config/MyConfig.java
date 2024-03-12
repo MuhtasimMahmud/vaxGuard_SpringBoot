@@ -48,11 +48,13 @@ public class MyConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
+
+
     @Override
     protected void configure(HttpSecurity http)throws Exception{
 
-        http.authorizeHttpRequests().antMatchers("/user/**").hasRole("USER")
-                .antMatchers("/admin/**").hasRole("ADMIN")
+        http.authorizeHttpRequests().antMatchers(" /vaccineCandidate/**").hasRole("USER")
+                .antMatchers("/clinicAuthority/**").hasRole("CLINIC")
                 .and().formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/dologin")

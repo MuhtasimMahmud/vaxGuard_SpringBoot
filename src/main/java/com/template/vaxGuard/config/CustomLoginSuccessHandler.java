@@ -42,9 +42,9 @@ public class CustomLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
         }
 
         if(roles.contains("ROLE_USER")){
-            url = "/user";
+            url = "/vaccineCandidate/userProfileOVerView";
         }else if(roles.contains("ROLE_ADMIN")){
-            url = "/admin";
+            url = "/clinicAuthority/pushVaccine";
         }
         return url;
     }
