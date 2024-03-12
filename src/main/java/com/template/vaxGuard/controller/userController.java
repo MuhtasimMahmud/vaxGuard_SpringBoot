@@ -8,17 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/vaccineCandidate")
 public class userController {
 
-//
-//    @GetMapping("/user")
-//    public String normalUser(){
-//        return "User/user";
-//    }
-
-    @GetMapping("/admin")
-    public String adminUser(){
-        return "Admin/admin";
-    }
-
     @GetMapping("/userProfileOVerView")
     public String profileOverViewTab(){
         return "user/profileOverview";
@@ -49,7 +38,10 @@ public class userController {
         return "user/FAQ";
     }
 
+    @GetMapping("/logout")
+    public void logout(){
 
+    }
 
 
 

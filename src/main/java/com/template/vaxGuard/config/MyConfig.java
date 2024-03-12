@@ -53,7 +53,7 @@ public class MyConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http)throws Exception{
 
-        http.authorizeHttpRequests().antMatchers(" /vaccineCandidate/**").hasRole("USER")
+        http.authorizeHttpRequests().antMatchers("/vaccineCandidate/**").hasRole("USER")
                 .antMatchers("/clinicAuthority/**").hasRole("CLINIC")
                 .and().formLogin()
                 .loginPage("/login")

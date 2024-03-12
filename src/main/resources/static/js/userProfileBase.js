@@ -28,3 +28,18 @@ navLinks.forEach(link => {
     }
 });
 
+
+function logout() {
+    // Make an AJAX request to trigger the void method
+    fetch('/logout', {
+        method: 'POST'
+    })
+        .then(() => {
+            console.log('Logout successfully');
+        })
+        .catch(error => {
+            console.error('Error when logout', error);
+        });
+}
+
+
