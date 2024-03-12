@@ -64,24 +64,24 @@
                                 </div>
                             </div>
                         </div>
-                        <form action="#!">
+                        <form th:action="@{/doClinicRegistration}" th:object="${clinicObject}">
                             <div class="row gy-3 overflow-hidden">
                                 <div class="col-12">
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name" required>
-                                        <label for="firstName" class="form-label">Hospital Name</label>
+                                        <input type="text" class="form-control" name="name" id="name" placeholder="Clinic Name" th:value="${clinic.name}" required>
+                                        <label for="name" class="form-label">Clinic Name</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" name="lastName" id="lastName" placeholder="First Name" required>
-                                        <label for="lastName" class="form-label">Registration Number</label>
+                                        <input type="text" class="form-control" name="registrationNumber" id="registrationNumber" placeholder="registrationNumber" th:value="${clinic.registrationNumber}" required>
+                                        <label for="registrationNumber" class="form-label">Registration Number</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating mb-3">
-                                        <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required>
-                                        <label for="email" class="form-label">EIN</label>
+                                        <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" th:value="${clinic.email}" required>
+                                        <label for="email" class="form-label">email</label>
                                     </div>
                                 </div>
                                 <div class="col-12">

@@ -2,11 +2,9 @@ package com.template.vaxGuard.controller;
 
 
 import com.template.vaxGuard.helper.Message;
-import com.template.vaxGuard.models.User;
-import com.template.vaxGuard.models.pendingCandidateFromHospital;
-import com.template.vaxGuard.models.userPendingVaccines;
-import com.template.vaxGuard.models.vaccineCandidate;
+import com.template.vaxGuard.models.*;
 import com.template.vaxGuard.repositories.UserRepository;
+import com.template.vaxGuard.repositories.clinicRepository;
 import com.template.vaxGuard.repositories.pendingCandidateFromHospitalRepository;
 import com.template.vaxGuard.repositories.vaccineCandidateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +35,9 @@ public class signUpController {
     @Autowired
     private pendingCandidateFromHospitalRepository pendingCandidateRepository;
 
+    @Autowired
+    private clinicRepository clinicRepository;
+
 
     @RequestMapping("/userSignUp")
     public String userSignUP(Model model){
@@ -48,7 +49,7 @@ public class signUpController {
     @RequestMapping("clinicSignUp")
     public String clinicSignUp(Model model){
         model.addAttribute("title", "Clinic Register Account");
-        model.addAttribute("user", new User());
+        model.addAttribute("clinic", new clinic());
         return "vaccineGivingClinic/clinicSignUp";
     }
 
@@ -109,5 +110,45 @@ public class signUpController {
             return "User/userSignUp";
         }
     }
+
+    @RequestMapping("/doClinicRegistration")
+    public String clinicRegistration(@ModelAttribute("clinicObject")clinic clinicObject, Model model, HttpSession session,
+                                     @RequestParam("password") String password){
+
+        clinic clinicDuplicateCheck = clinicRepository.findByEmail(clinicObject.getEmail());
+        User userDuplicateCheck = userRepository.findByEmail(clinicObject.getEmail());
+
+        try {
+            if(clinicDuplicateCheck == null && userDuplicateCheck == null){
+                User user = new User();
+                user.setRole("ROLE_CLINIC");
+                user.setEmail(clinicObject.getEmail());
+                user.setPassword(passwordEncoder.encode(password));
+
+                User userResult = userRepository.save(user);
+                clinic clinicResult = clinicRepository.save(clinicObject);
+
+                session.setAttribute("message", new Message("Successfully Registered your account !!", "alert-success"));
+                model.addAttribute("clinic", new clinic());
+
+            }else{
+                session.setAttribute("message", new Message("Sorry, give an unique email.", "alert-danger"));
+                model.addAttribute("clinic", clinicObject);
+            }
+
+            return "vaccineGivingClinic/clinicSignUp";
+
+        }catch (Exception exception){
+            exception.printStackTrace();
+            session.setAttribute("message", new Message("Something went wrong!", "alert-danger"));
+            model.addAttribute("clinic", clinicObject);
+            return "vaccineGivingClinic/clinicSignUp";
+        }
+
+
+    }
+
+
+
 
 }
