@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/vaccineCandidate")
 public class userController {
 
-
-    @GetMapping("/user")
-    public String normalUser(){
-        return "User/user";
-    }
+//
+//    @GetMapping("/user")
+//    public String normalUser(){
+//        return "User/user";
+//    }
 
     @GetMapping("/admin")
     public String adminUser(){

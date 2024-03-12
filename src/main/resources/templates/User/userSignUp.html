@@ -66,23 +66,23 @@
                                     <!-- Name Field -->
                                     <div class="col-12">
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" name="name" id="name" placeholder="Name" required>
-                                            <label for="name" class="form-label">Name</label>
+                                            <input type="text" class="form-control" name="babyName" id="babyName" placeholder="Baby Name" th:value="${user.babyName}" required>
+                                            <label for="babyName" class="form-label">Name</label>
                                         </div>
                                     </div>
 
                                     <!-- Name Field -->
                                     <div class="col-12">
                                         <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" name="birthId" id="birthId" placeholder="Birth ID" required>
-                                            <label for="birthId" class="form-label">Birth ID</label>
+                                            <input type="number" class="form-control" name="birthID" id="birthID" placeholder="Birth ID" th:value="${user.birthID}" required>
+                                            <label for="birthID" class="form-label">Birth ID</label>
                                         </div>
                                     </div>
 
                                     <!-- Email Field -->
                                     <div class="col-12">
                                         <div class="form-floating mb-3">
-                                            <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required>
+                                            <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" th:value="${user.email}" required>
                                             <label for="email" class="form-label">Email</label>
                                         </div>
                                     </div>
