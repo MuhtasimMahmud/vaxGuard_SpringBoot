@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,8 +26,26 @@ public class userController {
     @Autowired
     vaccineCandidateRepository candidateRepository;
 
+    vaccineCandidate currentLoggedInCandidate;
+
+    @ResponseBody
+    @GetMapping("/currentLoggedInUserName")
+    public String currentUser(Principal principal){
+
+        String username = principal.getName();
+        vaccineCandidate candidate = candidateRepository.findByEmail(username);
+
+        currentLoggedInCandidate = candidate;
+
+        return candidate.getBabyName();
+    }
+
+
     @GetMapping("/userProfileOVerView")
-    public String profileOverViewTab(){
+    public String profileOverViewTab(Model model){
+
+        model.addAttribute("currentUser", currentLoggedInCandidate);
+
         return "user/profileOverview";
     }
 
@@ -56,19 +75,9 @@ public class userController {
     }
 
 
-    @ResponseBody
-    @GetMapping("/currentLoggedInUserName")
-    public String currentUser(Principal principal){
-
-        String username = principal.getName();
-        System.out.println("principal username :" + username);
-
-        vaccineCandidate candidate = candidateRepository.findByEmail(username);
-
-        System.out.println("candidate username :" + candidate.getBabyName());
 
 
-        return candidate.getBabyName();
-    }
+
+
 
 }
