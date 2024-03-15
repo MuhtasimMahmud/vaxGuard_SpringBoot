@@ -25,6 +25,10 @@ public class vaccineCandidate{
     @Id
     private int birthID;
     private String vaccineTakingClinicName;
+    private String fatherName;
+    private String motherName;
+    private String address;
+
 
     @OneToMany
     private List<userTakenVaccines> takenVaccinesList;
@@ -118,5 +122,29 @@ public class vaccineCandidate{
 
     public void setPendingVaccinesList(List<userPendingVaccines> pendingVaccinesList) {
         this.pendingVaccinesList = pendingVaccinesList;
+    }
+
+    public String getFatherName() {
+        return fatherName;
+    }
+
+    public void setFatherName(String fatherName) {
+        this.fatherName = fatherName;
+    }
+
+    public String getMotherName() {
+        return motherName;
+    }
+
+    public void setMotherName(String motherName) {
+        this.motherName = motherName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

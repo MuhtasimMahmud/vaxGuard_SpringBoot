@@ -7,7 +7,6 @@ function currentUserName(){
 
     httpRequest.onload = function (){
         document.getElementById("currentLoggedInUserName").innerText = httpRequest.responseText;
-        // document.getElementById("currentLoggedInUserName").innerText = "method call hocche";
         console.log(httpRequest.responseText);
     }
 }
