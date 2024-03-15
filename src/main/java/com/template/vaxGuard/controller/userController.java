@@ -44,7 +44,7 @@ public class userController {
     @GetMapping("/userProfileOVerView")
     public String profileOverViewTab(Model model){
 
-        model.addAttribute("currentUser", currentLoggedInCandidate);
+//        model.addAttribute("currentUser", currentLoggedInCandidate);
 
         return "user/profileOverview";
     }
