@@ -26,7 +26,6 @@ public class userController {
     @Autowired
     vaccineCandidateRepository candidateRepository;
 
-    vaccineCandidate currentLoggedInCandidate;
 
     @ResponseBody
     @GetMapping("/currentLoggedInUserName")
@@ -35,16 +34,17 @@ public class userController {
         String username = principal.getName();
         vaccineCandidate candidate = candidateRepository.findByEmail(username);
 
-        currentLoggedInCandidate = candidate;
-
         return candidate.getBabyName();
     }
 
 
     @GetMapping("/userProfileOVerView")
-    public String profileOverViewTab(Model model){
+    public String profileOverViewTab(Model model, Principal principal){
 
-//        model.addAttribute("currentUser", currentLoggedInCandidate);
+        String username = principal.getName();
+        vaccineCandidate candidate = candidateRepository.findByEmail(username);
+
+        model.addAttribute("currentUser", candidate);
 
         return "user/profileOverview";
     }
