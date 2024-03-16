@@ -20,6 +20,7 @@ public class clinic{
     private List<vaccineCandidate> records;
     @OneToMany
     private List<vaccineCandidate> requests;
+    private String address;
 
 
     public clinic(){
@@ -41,6 +42,14 @@ public class clinic{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getName() {
