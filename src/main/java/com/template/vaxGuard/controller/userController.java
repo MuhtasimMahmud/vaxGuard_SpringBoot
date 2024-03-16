@@ -55,12 +55,6 @@ public class userController {
         return "user/profile";
     }
 
-
-    @GetMapping("/userEmail")
-    public String emailTab(){
-        return "user/email";
-    }
-
     @GetMapping("/userPassword")
     public String passwordTab(){
         return "user/password";
