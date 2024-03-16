@@ -1,12 +1,9 @@
 package com.template.vaxGuard.controller;
 
-import com.template.vaxGuard.models.User;
 import com.template.vaxGuard.models.vaccineCandidate;
 import com.template.vaxGuard.repositories.UserRepository;
 import com.template.vaxGuard.repositories.vaccineCandidateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,32 +24,37 @@ public class userController {
     vaccineCandidateRepository candidateRepository;
 
 
-    @ResponseBody
-    @GetMapping("/currentLoggedInUserName")
-    public String currentUser(Principal principal){
+    public vaccineCandidate currentUser(Principal principal){
 
         String username = principal.getName();
         vaccineCandidate candidate = candidateRepository.findByEmail(username);
 
-        return candidate.getBabyName();
+        return candidate;
+    }
+
+
+    @ResponseBody
+    @GetMapping("/currentLoggedInUserName")
+    public String currentUserName(Principal principal){
+        return currentUser(principal).getBabyName();
     }
 
 
     @GetMapping("/userProfileOVerView")
     public String profileOverViewTab(Model model, Principal principal){
 
-        String username = principal.getName();
-        vaccineCandidate candidate = candidateRepository.findByEmail(username);
-
-        model.addAttribute("currentUser", candidate);
-
+        model.addAttribute("currentUser", currentUser(principal));
         return "user/profileOverview";
     }
 
+
     @GetMapping("/userProfile")
-    public String userProfileTab(){
+    public String userProfileTab(Model model, Principal principal){
+
+        model.addAttribute("currentUser", currentUser(principal));
         return "user/profile";
     }
+
 
     @GetMapping("/userEmail")
     public String emailTab(){
