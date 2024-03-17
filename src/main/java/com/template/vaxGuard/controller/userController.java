@@ -110,7 +110,17 @@ public class userController {
             if(candidate != null){
                 candidate.setFatherName(vaccineCandidate.getFatherName());
                 candidate.setMotherName(vaccineCandidate.getMotherName());
-                candidate.setPreferredAddress(vaccineCandidate.getPreferredAddress());
+
+                if(candidate.getPreferredAddress().equals(vaccineCandidate.getPreferredAddress()) && candidate.getPreferredAddress() != null){
+                    // Preferred location not changed. So nothing to do.
+                }else {
+
+                    // Preferred Location Changed or location added
+                    candidate.setPreferredAddress(vaccineCandidate.getPreferredAddress());
+
+                    // As location is changed/location addes so new clinic gulate request send korte hobe jegula oi location e ase
+
+                }
 
                 candidateRepository.save(candidate);
                 model.addAttribute("currentUser", candidate);
