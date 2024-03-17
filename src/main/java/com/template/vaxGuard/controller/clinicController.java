@@ -80,6 +80,7 @@ public class clinicController {
         try{
             if(existingClinic != null){
                 existingClinic.setAddress(clinic.getAddress());
+                existingClinic.setName(clinic.getName());
                 clinicRepository.save(existingClinic);
                 model.addAttribute("clinic", existingClinic);
                 session.setAttribute("message", new Message("Your Profile is Updated", "alert-success"));
