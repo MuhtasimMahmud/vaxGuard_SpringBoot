@@ -17,12 +17,12 @@
                 <!--Profile Tab-->
                 <div class="tab-pane fade show active" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="1">
 
-                    <form action="" th:object="${clinic}" class="row gy-3 gy-xxl-4">
+                    <form th:action="@{/clinicAuthority/updateClinicProfile}" th:object="${clinic}" class="row gy-3 gy-xxl-4">
 
                         <!-- Clinic Name -->
                         <div class="col-12 col-md-6">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" th:value="${clinic.name}">
+                            <input type="text" class="form-control" name="name" id="name" th:value="${clinic.name}">
                         </div>
 
                         <!-- Email -->
@@ -40,7 +40,7 @@
                         <!-- Address -->
                         <div class="col-12 col-md-6">
                             <label for="address" class="form-label"> Address </label>
-                            <input type="text" class="form-control" id="address" th:value="${clinic.address}">
+                            <input type="text" class="form-control" name="address" id="address" th:value="${clinic.address}">
                         </div>
 
 
@@ -48,13 +48,14 @@
                             <div class="col-6 mt-3">
                                 <button type="submit" class="btn btn-primary">Update</button>
                             </div>
-
-                            <div class="col-6 mt-2">
-                                <a class="btn btn-outline-primary" th:href="@{/logout}" id="logout"> Logout </a>
-                            </div>
                         </div>
 
                     </form>
+
+                    <div class="col-6 mt-2">
+                        <a class="btn btn-outline-primary" th:href="@{/logout}" id="logout"> Logout </a>
+                    </div>
+
                 </div>
             </div>
         </div>
