@@ -16,64 +16,64 @@
                 <div class="tab-content pt-4" id="profileTabContent">
                     <!--Profile Tab-->
                     <div class="tab-pane fade show active" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="1">
-                        <form th:object="${currentUser}" class="row gy-3 gy-xxl-4">
+                        <form th:action="@{/vaccineCandidate/updateVaccineCandidateProfile}" th:object="${currentUser}" class="row gy-3 gy-xxl-4">
 
                             <!--Baby Name-->
                             <div class="col-12 col-md-6">
                                 <label for="babyName" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="babyName" th:value="${currentUser.babyName}">
+                                <input type="text" class="form-control" name="babyName" id="babyName" th:value="${currentUser.babyName}">
                             </div>
 
                             <!--Birth Date-->
                             <div class="col-12 col-md-6">
                                 <label for="birthDate" class="form-label"> Birth Date</label>
-                                <input type="date" class="form-control" id="birthDate" th:value="${currentUser.birthDate}" readonly>
+                                <input type="date" class="form-control" name="birthDate" id="birthDate" th:value="${currentUser.birthDate}" readonly>
                             </div>
 
                             <!--Birth Time-->
                             <div class="col-12 col-md-6">
                                 <label for="birthTime" class="form-label">Birth Time</label>
-                                <input type="time" class="form-control" id="birthTime" th:value="${currentUser.birthTime}" readonly>
+                                <input type="time" class="form-control" name="birthTime" id="birthTime" th:value="${currentUser.birthTime}" readonly>
                             </div>
 
                             <!--Birth Hospital Name-->
                             <div class="col-12 col-md-6">
                                 <label for="birthHospitalName" class="form-label">Birth Hospital Name</label>
-                                <input type="text" class="form-control" id="birthHospitalName" th:value="${currentUser.birthHospitalName}" readonly>
+                                <input type="text" class="form-control" name="birthHospitalName" id="birthHospitalName" th:value="${currentUser.birthHospitalName}" readonly>
                             </div>
 
                             <!--Email-->
                             <div class="col-12 col-md-6">
                                 <label for="email" class="form-label">Father/Mother's Email </label>
-                                <input type="text" class="form-control" id="email" th:value="${currentUser.email}" readonly>
+                                <input type="text" class="form-control" name="email" id="email" th:value="${currentUser.email}" readonly>
                             </div>
 
                             <!--birthID-->
                             <div class="col-12 col-md-6">
                                 <label for="birthID" class="form-label"> Birth ID </label>
-                                <input type="text" class="form-control" id="birthID" th:value="${currentUser.birthID}" readonly>
+                                <input type="text" class="form-control" name="birthID" id="birthID" th:value="${currentUser.birthID}" readonly>
                             </div>
 
                             <!--Father Name-->
                             <div class="col-12 col-md-6">
                                 <label for="fatherName" class="form-label">Father Name</label>
-                                <input type="tel" class="form-control" id="fatherName" th:value="${currentUser.fatherName}">
+                                <input type="tel" class="form-control" name="fatherName" id="fatherName" th:value="${currentUser.fatherName}">
                             </div>
 
 
                             <!--Mother Name-->
                             <div class="col-12 col-md-6">
                                 <label for="motherName" class="form-label">Mother Name</label>
-                                <input type="text" class="form-control" id="motherName" th:value="${currentUser.motherName}">
+                                <input type="text" class="form-control" name="motherName" id="motherName" th:value="${currentUser.motherName}">
                             </div>
 
                             <!-- Vaccine Taking Clinic Address -->
                             <div class="col-12 col-md-6">
-                                <label for="inputCountry" class="form-label">Address you prefer </label>
-                                <select class="form-select" id="inputCountry">
-                                    <option value="Afghanistan">Afghanistan</option>
-                                    <option value="Åland Islands">Åland Islands</option>
-                                    <option value="Zimbabwe">Zimbabwe</option>
+                                <label for="preferredAddress" class="form-label">Address you prefer </label>
+                                <select class="form-select" name="preferredAddress" id="preferredAddress">
+                                    <div th:each="address : ${clinicAddressList}">
+                                        <option th:value="${address}">  [[${address}]] </option>
+                                    </div>
                                 </select>
                             </div>
 

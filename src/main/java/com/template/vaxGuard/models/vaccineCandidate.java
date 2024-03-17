@@ -4,12 +4,8 @@ package com.template.vaxGuard.models;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.servlet.http.PushBuilder;
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -27,7 +23,7 @@ public class vaccineCandidate{
     private String vaccineTakingClinicName;
     private String fatherName;
     private String motherName;
-    private String address;
+    private String preferredAddress;
 
 
     @OneToMany
@@ -140,11 +136,11 @@ public class vaccineCandidate{
         this.motherName = motherName;
     }
 
-    public String getAddress() {
-        return address;
+    public String getPreferredAddress() {
+        return preferredAddress;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setPreferredAddress(String address) {
+        this.preferredAddress = address;
     }
 }
