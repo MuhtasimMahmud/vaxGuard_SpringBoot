@@ -120,6 +120,14 @@ public class userController {
 
                     // As location is changed/location addes so new clinic gulate request send korte hobe jegula oi location e ase
 
+                    List<clinic> clinicListOfPreferredAddress =  clinicRepository.findAllByAddress(vaccineCandidate.getPreferredAddress());
+                    for(int i=0; i<clinicListOfPreferredAddress.size(); i++){
+                        List<vaccineCandidate> list = clinicListOfPreferredAddress.get(i).getRequests();
+                        list.add(candidate);
+
+                        clinicListOfPreferredAddress.get(i).setRequests(list);
+                    }
+
                 }
 
                 candidateRepository.save(candidate);

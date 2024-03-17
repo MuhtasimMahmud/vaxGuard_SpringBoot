@@ -20,6 +20,7 @@ public class clinic{
     private List<vaccineCandidate> records;
     @OneToMany
     private List<vaccineCandidate> requests;
+
     private String address;
 
 
