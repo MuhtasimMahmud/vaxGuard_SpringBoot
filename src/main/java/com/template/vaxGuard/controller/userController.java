@@ -1,12 +1,15 @@
 package com.template.vaxGuard.controller;
 
+import com.template.vaxGuard.config.MyConfig;
 import com.template.vaxGuard.helper.Message;
+import com.template.vaxGuard.models.User;
 import com.template.vaxGuard.models.clinic;
 import com.template.vaxGuard.models.vaccineCandidate;
 import com.template.vaxGuard.repositories.UserRepository;
 import com.template.vaxGuard.repositories.clinicRepository;
 import com.template.vaxGuard.repositories.vaccineCandidateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +26,8 @@ import java.util.List;
 @RequestMapping("/vaccineCandidate")
 public class userController {
 
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     UserRepository userRepository;
@@ -119,12 +124,6 @@ public class userController {
 
         return "redirect:/vaccineCandidate/userProfile";
     }
-
-
-
-
-
-
 
 
 
