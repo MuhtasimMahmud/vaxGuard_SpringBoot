@@ -1,7 +1,9 @@
 package com.template.vaxGuard.controller;
 
 import com.template.vaxGuard.helper.Message;
+import com.template.vaxGuard.models.User;
 import com.template.vaxGuard.models.pendingCandidateFromHospital;
+import com.template.vaxGuard.repositories.UserRepository;
 import com.template.vaxGuard.repositories.pendingCandidateFromHospitalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,9 @@ public class HospitalController {
 
     @Autowired
     pendingCandidateFromHospitalRepository pendingCandidateRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     @GetMapping("hospitalLogin")
     public String hospitalLogin(){
@@ -39,8 +44,9 @@ public class HospitalController {
             if(passcode.equals("passcode1212")){
                 LocalDate birthDate = pendingCandidate.getBirthDate();
                 pendingCandidateFromHospital checkDuplicate = pendingCandidateRepository.findByEmail(pendingCandidate.getEmail());
+                User checkUserDuplicate = userRepository.findByEmail(pendingCandidate.getEmail());
 
-                if(checkDuplicate == null){
+                if(checkDuplicate == null && checkUserDuplicate == null){
 
                     pendingCandidateFromHospital result = pendingCandidateRepository.save(pendingCandidate);
                     model.addAttribute("pendingCandidate", new pendingCandidateFromHospital());

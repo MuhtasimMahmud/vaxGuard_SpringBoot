@@ -6,7 +6,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 @Entity
 public class vaccineCandidate{
@@ -25,11 +27,12 @@ public class vaccineCandidate{
     private String motherName;
     private String preferredAddress;
 
-
-    @OneToMany
-    private List<userTakenVaccines> takenVaccinesList;
-    @OneToMany
+    @OneToMany(mappedBy = "vaccineCandidate", cascade = CascadeType.ALL)
     private List<userPendingVaccines> pendingVaccinesList;
+
+
+    private List<userTakenVaccines> takenVaccinesList;
+
 
     public vaccineCandidate(){
 

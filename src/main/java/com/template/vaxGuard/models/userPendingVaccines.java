@@ -2,6 +2,8 @@ package com.template.vaxGuard.models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
 @Entity
@@ -11,8 +13,13 @@ public class userPendingVaccines {
     private LocalDate takingDate;
     private String takingClinicName;
     @Id
-    private String vaccineID;
+    private String vaccineID; //primary key
     private int numberOfDose;
+
+
+    @ManyToOne
+    @JoinColumn(name = "vaccine_candidate_id") //foreign key
+    private vaccineCandidate vaccineCandidate;
 
 
     public userPendingVaccines() {

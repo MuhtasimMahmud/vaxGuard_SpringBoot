@@ -79,17 +79,7 @@ public class signUpController {
 
             }else{
 
-                // Entry in the user table
-
-                User newUser = new User();
-                newUser.setEmail(candidate.getEmail());
-                newUser.setRole("ROLE_USER");
-                newUser.setPassword(passwordEncoder.encode(password));
-                User result = userRepository.save(newUser);
-
-
                 // Entry in the vaccineCandidate table
-
                 pendingCandidateFromHospital pendingCandidate = pendingCandidateRepository.findByEmail(candidate.getEmail());
                 candidate.setBirthDate(pendingCandidate.getBirthDate());
                 candidate.setBirthTime(pendingCandidate.getBirthTime());
@@ -97,6 +87,21 @@ public class signUpController {
 
 
                 vaccineCandidate resultCandidate = this.vaccineCandidateRepository.save(candidate);
+
+
+                // Entry in the user table
+                User newUser = new User();
+                newUser.setEmail(candidate.getEmail());
+                newUser.setRole("ROLE_USER");
+                newUser.setPassword(passwordEncoder.encode(password));
+                User result = userRepository.save(newUser);
+
+
+
+
+
+                // remove from the pedingCandidateFromHospital list
+                pendingCandidateRepository.delete(has_pendingCandidate);
 
 
                 session.setAttribute("message", new Message("Successfully Registered your account !!", "alert-success"));
