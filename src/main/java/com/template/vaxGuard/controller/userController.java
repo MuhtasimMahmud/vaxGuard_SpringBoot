@@ -118,10 +118,14 @@ public class userController {
             if(candidate != null){
                 candidate.setFatherName(vaccineCandidate.getFatherName());
                 candidate.setMotherName(vaccineCandidate.getMotherName());
+                candidate.setBabyName(vaccineCandidate.getBabyName());
 
                 if(candidate.getPreferredAddress().equals(vaccineCandidate.getPreferredAddress()) && candidate.getPreferredAddress() != null){
                     // Preferred location not changed. So nothing to do.
-                }else {
+                } else if (candidate.getPreferredAddress() == null) {
+                    // just null e save hobe
+                    candidate.setPreferredAddress("");
+                } else {
 
                     // Preferred Location Changed or location added
                     candidate.setPreferredAddress(vaccineCandidate.getPreferredAddress());
