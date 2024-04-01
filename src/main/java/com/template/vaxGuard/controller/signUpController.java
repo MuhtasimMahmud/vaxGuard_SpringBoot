@@ -85,6 +85,12 @@ public class signUpController {
                 candidate.setBirthTime(pendingCandidate.getBirthTime());
                 candidate.setBirthHospitalName(pendingCandidate.getBirthHospitalName());
 
+                List<vaccines> pendingVaccines = new ArrayList<>();
+
+                pendingVaccines.add(new vaccines("Polio", candidate.getBirthDate().plusDays(10), candidate.getVaccineTakingClinicName(), "1st", false, candidate.getBirthID() ));
+                pendingVaccines.add(new vaccines("Polio", candidate.getBirthDate().plusDays(100), candidate.getVaccineTakingClinicName(), "2nd", false, candidate.getBirthID() ));
+
+                candidate.setPendingVaccines(pendingVaccines);
 
                 vaccineCandidate resultCandidate = this.vaccineCandidateRepository.save(candidate);
 

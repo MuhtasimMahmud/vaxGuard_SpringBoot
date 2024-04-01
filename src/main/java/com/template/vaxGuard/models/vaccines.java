@@ -7,39 +7,33 @@ import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
 @Entity
-public class userPendingVaccines {
+public class vaccines {
 
     private String vaccineName;
     private LocalDate takingDate;
     private String takingClinicName;
+    private String numberOfDose; // which number of dose it is - 1st/2nd/3rd etc
+    private boolean isGiven; // ture / false
+
     @Id
-    private String vaccineID; //primary key
-    private int numberOfDose;
+    private String vID;
 
 
     @ManyToOne
-    @JoinColumn(name = "vaccine_candidate_id") //foreign key
-    private vaccineCandidate vaccineCandidate;
+    private vaccineCandidate candidate;
 
 
-    public userPendingVaccines() {
+    public vaccines(){
         //Default Constructor
     }
 
-    public userPendingVaccines(String vaccineName, LocalDate takingDate, String takingClinicName, String vaccineID, int numberOfDose) {
+    public vaccines(String vaccineName, LocalDate takingDate, String takingClinicName, String numberOfDose, boolean isGiven, int candidateBirthID) {
         this.vaccineName = vaccineName;
         this.takingDate = takingDate;
         this.takingClinicName = takingClinicName;
-        this.vaccineID = vaccineID;
         this.numberOfDose = numberOfDose;
-    }
-
-    public int getNumberOfDose() {
-        return numberOfDose;
-    }
-
-    public void setNumberOfDose(int numberOfDose) {
-        this.numberOfDose = numberOfDose;
+        this.isGiven = isGiven;
+        this.vID = vaccineName+"_"+numberOfDose+ "_" + candidateBirthID;
     }
 
     public String getVaccineName() {
@@ -66,11 +60,35 @@ public class userPendingVaccines {
         this.takingClinicName = takingClinicName;
     }
 
-    public String getVaccineID() {
-        return vaccineID;
+    public String getNumberOfDose() {
+        return numberOfDose;
     }
 
-    public void setVaccineID(String vaccineID) {
-        this.vaccineID = vaccineID;
+    public void setNumberOfDose(String numberOfDose) {
+        this.numberOfDose = numberOfDose;
+    }
+
+    public boolean isGiven() {
+        return isGiven;
+    }
+
+    public void setGiven(boolean given) {
+        isGiven = given;
+    }
+
+    public String getvID() {
+        return vID;
+    }
+
+    public void setvID(String vID) {
+        this.vID = vID;
+    }
+
+    public vaccineCandidate getCandidate() {
+        return candidate;
+    }
+
+    public void setCandidate(vaccineCandidate candidate) {
+        this.candidate = candidate;
     }
 }

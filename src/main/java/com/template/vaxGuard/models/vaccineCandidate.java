@@ -6,9 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 @Entity
 public class vaccineCandidate{
@@ -27,36 +25,16 @@ public class vaccineCandidate{
     private String motherName;
     private String preferredAddress;
 
-    @OneToMany(mappedBy = "vaccineCandidate", cascade = CascadeType.ALL)
-    private List<userPendingVaccines> pendingVaccinesList;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<vaccines> pendingVaccines = new ArrayList<>();
 
 
-    private List<userTakenVaccines> takenVaccinesList;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<vaccines> takenVaccines = new ArrayList<>();
 
 
     public vaccineCandidate(){
-
         //Default Constructor
-    }
-
-    public vaccineCandidate(String babyName, LocalDate birthDate, LocalTime birthTime, String birthHospitalName, String email, int birthID, List<userTakenVaccines> takenVaccinesList, List<userPendingVaccines> pendingVaccinesList, String vaccineTakingClinicName) {
-        this.babyName = babyName;
-        this.birthDate = birthDate;
-        this.birthTime = birthTime;
-        this.birthHospitalName = birthHospitalName;
-        this.email = email;
-        this.birthID = birthID;
-        this.takenVaccinesList = takenVaccinesList;
-        this.pendingVaccinesList = pendingVaccinesList;
-        this.vaccineTakingClinicName = vaccineTakingClinicName;
-    }
-
-    public String getVaccineTakingClinicName() {
-        return vaccineTakingClinicName;
-    }
-
-    public void setVaccineTakingClinicName(String vaccineTakingClinicName) {
-        this.vaccineTakingClinicName = vaccineTakingClinicName;
     }
 
     public String getBabyName() {
@@ -65,14 +43,6 @@ public class vaccineCandidate{
 
     public void setBabyName(String babyName) {
         this.babyName = babyName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public LocalDate getBirthDate() {
@@ -99,6 +69,14 @@ public class vaccineCandidate{
         this.birthHospitalName = birthHospitalName;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public int getBirthID() {
         return birthID;
     }
@@ -107,20 +85,12 @@ public class vaccineCandidate{
         this.birthID = birthID;
     }
 
-    public List<userTakenVaccines> getTakenVaccinesList() {
-        return takenVaccinesList;
+    public String getVaccineTakingClinicName() {
+        return vaccineTakingClinicName;
     }
 
-    public void setTakenVaccinesList(List<userTakenVaccines> takenVaccinesList) {
-        this.takenVaccinesList = takenVaccinesList;
-    }
-
-    public List<userPendingVaccines> getPendingVaccinesList() {
-        return pendingVaccinesList;
-    }
-
-    public void setPendingVaccinesList(List<userPendingVaccines> pendingVaccinesList) {
-        this.pendingVaccinesList = pendingVaccinesList;
+    public void setVaccineTakingClinicName(String vaccineTakingClinicName) {
+        this.vaccineTakingClinicName = vaccineTakingClinicName;
     }
 
     public String getFatherName() {
@@ -143,7 +113,23 @@ public class vaccineCandidate{
         return preferredAddress;
     }
 
-    public void setPreferredAddress(String address) {
-        this.preferredAddress = address;
+    public void setPreferredAddress(String preferredAddress) {
+        this.preferredAddress = preferredAddress;
+    }
+
+    public List<vaccines> getPendingVaccines() {
+        return pendingVaccines;
+    }
+
+    public void setPendingVaccines(List<vaccines> pendingVaccines) {
+        this.pendingVaccines = pendingVaccines;
+    }
+
+    public List<vaccines> getTakenVaccines() {
+        return takenVaccines;
+    }
+
+    public void setTakenVaccines(List<vaccines> takenVaccines) {
+        this.takenVaccines = takenVaccines;
     }
 }
