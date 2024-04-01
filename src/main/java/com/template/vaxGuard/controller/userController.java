@@ -89,10 +89,18 @@ public class userController {
         return "user/password";
     }
 
-    @GetMapping("/userVaccineList")
-    public String vaccineList(){
-        return "user/Vaccine List";
+    @GetMapping("/userTakenVaccineList")
+    public String takenVaccines(){
+        return "user/takenVaccineList";
     }
+
+
+    @GetMapping("/userPendingVaccineList")
+    public String vaccineList(){
+        return "user/pendingVaccineList";
+    }
+
+
 
     @GetMapping("/userFAQ")
     public String userFAQ(){
@@ -142,6 +150,8 @@ public class userController {
 
         return "redirect:/vaccineCandidate/userProfile";
     }
+
+
 
 
 
