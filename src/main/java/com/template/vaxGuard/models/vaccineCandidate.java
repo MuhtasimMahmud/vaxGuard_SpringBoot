@@ -32,6 +32,8 @@ public class vaccineCandidate{
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<vaccines> takenVaccines = new ArrayList<>();
 
+    @ManyToOne
+    private clinic clinic;
 
     public vaccineCandidate(){
         //Default Constructor

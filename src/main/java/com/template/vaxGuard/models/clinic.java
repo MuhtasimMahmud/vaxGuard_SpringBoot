@@ -14,6 +14,7 @@ public class clinic{
     private String registrationNumber;
     @Id
     private String email;
+
     @OneToMany
     private List<clinicVaccines> vaccinesList;
     @OneToMany

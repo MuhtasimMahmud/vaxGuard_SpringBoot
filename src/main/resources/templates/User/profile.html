@@ -75,7 +75,7 @@
 
                             <!-- Change Vaccine Taking Clinic Address -->
                             <div class="col-12 col-md-6">
-                                <label for="preferredAddress" class="form-label">Preferred clinic location </label>
+                                <label for="preferredAddress" class="form-label">Preferred clinic </label>
                                 <select class="form-select" name="preferredAddress" id="preferredAddress">
                                     <option th:each="address : ${clinicAddressList}" th:value="${address}">  [[${address}]] </option>
                                 </select>

@@ -120,11 +120,10 @@ public class userController {
                 candidate.setMotherName(vaccineCandidate.getMotherName());
                 candidate.setBabyName(vaccineCandidate.getBabyName());
 
-                if(candidate.getPreferredAddress().equals(vaccineCandidate.getPreferredAddress()) && candidate.getPreferredAddress() != null){
-                    // Preferred location not changed. So nothing to do.
-                } else if (candidate.getPreferredAddress() == null) {
-                    // just null e save hobe
+                if(candidate.getPreferredAddress() == null){
                     candidate.setPreferredAddress("");
+                } else if (candidate.getPreferredAddress().equals(vaccineCandidate.getPreferredAddress()) && candidate.getPreferredAddress() != null){
+                    // Preferred location not changed. So nothing to do.
                 } else {
 
                     // Preferred Location Changed or location added
@@ -133,6 +132,7 @@ public class userController {
                     // As location is changed/location addes so new clinic gulate request send korte hobe jegula oi location e ase
 
                     List<clinic> clinicListOfPreferredAddress =  clinicRepository.findAllByAddress(vaccineCandidate.getPreferredAddress());
+
                     for(int i=0; i<clinicListOfPreferredAddress.size(); i++){
                         List<vaccineCandidate> list = clinicListOfPreferredAddress.get(i).getRequests();
                         list.add(candidate);
@@ -154,6 +154,7 @@ public class userController {
 
         return "redirect:/vaccineCandidate/userProfile";
     }
+
 
 
 
