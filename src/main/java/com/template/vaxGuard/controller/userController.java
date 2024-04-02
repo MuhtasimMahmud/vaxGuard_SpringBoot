@@ -47,15 +47,15 @@ public class userController {
         return candidate;
     }
 
-    public List clinicAddressList(){
+    public List clinicLists(){
 
-        List<String> clinicAddressList = new ArrayList<>();
         List<clinic> clinicLists = clinicRepository.findAll();
+        List<String> clinicNames = new ArrayList<>();
 
         for(int i=0; i<clinicLists.size(); i++){
-            clinicAddressList.add(clinicLists.get(i).getAddress());
+            clinicNames.add(clinicLists.get(i).getName());
         }
-        return clinicAddressList;
+        return clinicNames;
     }
 
 
@@ -79,7 +79,7 @@ public class userController {
     public String userProfileTab(Model model, Principal principal){
 
         model.addAttribute("currentUser", currentUser(principal));
-        model.addAttribute("clinicAddressList", clinicAddressList());
+        model.addAttribute("clinicNames", clinicLists());
         return "user/profile";
     }
 
@@ -112,45 +112,8 @@ public class userController {
     @GetMapping("/updateVaccineCandidateProfile")
     public String updateVaccineCandidateProfile(@ModelAttribute("vaccineCandidate") vaccineCandidate vaccineCandidate, Model model, HttpSession session){
 
-        vaccineCandidate candidate = candidateRepository.findByEmail(vaccineCandidate.getEmail()); // Checking if the email really exists or not
 
-        try{
-            if(candidate != null){
-                candidate.setFatherName(vaccineCandidate.getFatherName());
-                candidate.setMotherName(vaccineCandidate.getMotherName());
-                candidate.setBabyName(vaccineCandidate.getBabyName());
 
-                if(candidate.getPreferredAddress() == null){
-                    candidate.setPreferredAddress("");
-                } else if (candidate.getPreferredAddress().equals(vaccineCandidate.getPreferredAddress()) && candidate.getPreferredAddress() != null){
-                    // Preferred location not changed. So nothing to do.
-                } else {
-
-                    // Preferred Location Changed or location added
-                    candidate.setPreferredAddress(vaccineCandidate.getPreferredAddress());
-
-                    // As location is changed/location addes so new clinic gulate request send korte hobe jegula oi location e ase
-
-                    List<clinic> clinicListOfPreferredAddress =  clinicRepository.findAllByAddress(vaccineCandidate.getPreferredAddress());
-
-                    for(int i=0; i<clinicListOfPreferredAddress.size(); i++){
-                        List<vaccineCandidate> list = clinicListOfPreferredAddress.get(i).getRequests();
-                        list.add(candidate);
-
-                        clinicListOfPreferredAddress.get(i).setRequests(list);
-                    }
-
-                }
-
-                candidateRepository.save(candidate);
-                model.addAttribute("currentUser", candidate);
-                session.setAttribute("message", new Message("Your Profile is Updated!", "alert-success"));
-            }
-        }catch (Exception exception){
-            exception.printStackTrace();
-            session.setAttribute("message", new Message("Sorry, couldn't update!", "alert-danger"));
-
-        }
 
         return "redirect:/vaccineCandidate/userProfile";
     }

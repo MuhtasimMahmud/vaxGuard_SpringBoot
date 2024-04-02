@@ -9,6 +9,7 @@ import java.util.List;
 @Entity
 public class clinic{
 
+    @Column(unique = true)
     private String name;
     @Column(unique = true)
     private String registrationNumber;

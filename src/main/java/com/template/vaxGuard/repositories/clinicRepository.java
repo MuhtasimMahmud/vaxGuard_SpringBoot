@@ -12,7 +12,9 @@ public interface clinicRepository extends JpaRepository<clinic, String> {
 
     public List<clinic> findAll();
 
-    @Query("select c from clinic c where c.address = :address")
-    public List<clinic> findAllByAddress(String address);
+    @Query("select c from clinic c where c.name = :name")
+    public clinic findByName(String name);
+
+
 
 }

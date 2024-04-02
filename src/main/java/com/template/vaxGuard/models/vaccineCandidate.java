@@ -23,7 +23,7 @@ public class vaccineCandidate{
     private String vaccineTakingClinicName;
     private String fatherName;
     private String motherName;
-    private String preferredAddress;
+    private String preferredClinic;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<vaccines> pendingVaccines = new ArrayList<>();
@@ -111,12 +111,12 @@ public class vaccineCandidate{
         this.motherName = motherName;
     }
 
-    public String getPreferredAddress() {
-        return preferredAddress;
+    public String getPreferredClinic() {
+        return preferredClinic;
     }
 
-    public void setPreferredAddress(String preferredAddress) {
-        this.preferredAddress = preferredAddress;
+    public void setPreferredClinic(String preferredAddress) {
+        this.preferredClinic = preferredAddress;
     }
 
     public List<vaccines> getPendingVaccines() {
