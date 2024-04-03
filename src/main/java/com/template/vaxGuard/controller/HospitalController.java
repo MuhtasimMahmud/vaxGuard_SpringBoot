@@ -1,5 +1,6 @@
 package com.template.vaxGuard.controller;
 
+import com.template.vaxGuard.email.emailSenderService;
 import com.template.vaxGuard.helper.Message;
 import com.template.vaxGuard.models.User;
 import com.template.vaxGuard.models.pendingCandidateFromHospital;
@@ -15,6 +16,14 @@ import java.time.LocalDate;
 
 @Controller
 public class HospitalController {
+
+
+    @Autowired
+    private emailSenderService senderService;
+
+    public void sendMail(String userEmail, String subject, String body){
+        senderService.sendEmail(userEmail, subject, body);
+    }
 
 
     @Autowired
@@ -51,6 +60,9 @@ public class HospitalController {
                     pendingCandidateFromHospital result = pendingCandidateRepository.save(pendingCandidate);
                     model.addAttribute("pendingCandidate", new pendingCandidateFromHospital());
                     session.setAttribute("message", new Message("Successfully Registered! Birth ID is : "+result.getBirthID()+". Now user just need to register an account with password along this birthID and email.", "alert-success"));
+
+                    sendMail(pendingCandidate.getEmail(), "Account Creation",
+                            "Congratulation you've been successfully registered! Your birth Id is : "+result.getBirthID());
 
                 }else{
                     model.addAttribute("pendingCandidate", pendingCandidate);
