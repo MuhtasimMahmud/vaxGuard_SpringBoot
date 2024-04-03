@@ -129,8 +129,10 @@ public class signUpController {
         clinic clinicDuplicateCheck = clinicRepository.findByEmail(clinicObject.getEmail());
         User userDuplicateCheck = userRepository.findByEmail(clinicObject.getEmail());
 
+        clinic hasSameName = clinicRepository.findByName(clinicObject.getName());
+
         try {
-            if(clinicDuplicateCheck == null && userDuplicateCheck == null){
+            if(clinicDuplicateCheck == null && userDuplicateCheck == null && hasSameName == null){
                 User user = new User();
                 user.setRole("ROLE_CLINIC");
                 user.setEmail(clinicObject.getEmail());
@@ -143,7 +145,7 @@ public class signUpController {
                 model.addAttribute("clinic", new clinic());
 
             }else{
-                session.setAttribute("message", new Message("Sorry, give an unique email.", "alert-danger"));
+                session.setAttribute("message", new Message("Sorry, email or clinic name already exists!.", "alert-danger"));
                 model.addAttribute("clinic", clinicObject);
             }
 
