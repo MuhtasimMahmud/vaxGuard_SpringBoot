@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.template</groupId>
-	<artifactId>user_registraion_and_role_baseed_login_template</artifactId>
+	<artifactId>vaxGuard</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>user_registraion_and_role_baseed_login_template</name>
-	<description>Demo project for Spring Boot</description>
+	<name>vaxGuard</name>
+	<description> project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -44,6 +44,7 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>

@@ -1,0 +1,43 @@
+body {
+    font-weight: lighter;
+    color: #6c757d; /* Lighter color */
+}
+th, td {
+    text-align: center;
+}
+
+tr{
+    border-bottom: 1px solid #b4b5b7; !important;/* Light-colored line between rows */
+
+}
+.table-container {
+    max-width: 100%;
+    overflow-x: auto;
+}
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.table-container th, .table-container td {
+    padding: 0.5rem;
+    border: none;
+}
+.table-container th {
+    position: sticky;
+    top: 0;
+    background-color: #f8f9fa; /* Lighter background color */
+}
+.table-container th:first-child, .table-container td:first-child {
+    text-align: left;
+}
+.accept-icon, .reject-icon {
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin: 0 0.5rem;
+}
+.accept-icon {
+    color: #28a745; /* Green color for accept icon */
+}
+.reject-icon {
+    color: #dc3545; /* Red color for reject icon */
+}
