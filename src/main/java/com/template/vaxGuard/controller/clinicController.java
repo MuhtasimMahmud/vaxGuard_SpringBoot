@@ -71,6 +71,13 @@ public class clinicController {
         return "vaccineGivingClinic/profile";
     }
 
+    @GetMapping("/scheduled")
+    public String scheduled(){
+        return "vaccineGivingClinic/scheduled";
+    }
+
+
+
     @GetMapping("/updateClinicProfile")
     public String updateClinicProfile(@ModelAttribute("clinic")clinic clinic, Model model, Principal principal, HttpSession session){
 
