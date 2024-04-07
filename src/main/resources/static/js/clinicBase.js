@@ -30,6 +30,7 @@ navLinks.forEach(link => {
 
 
 
+
 // for schedule page - modal
 
     // Function to open modal
