@@ -53,7 +53,7 @@ public class userController {
         List<String> clinicNames = new ArrayList<>();
 
         for(int i=0; i<clinicLists.size(); i++){
-            clinicNames.add(clinicLists.get(i).getName());
+            clinicNames.add(clinicLists.get(i).getName() + ". [" + clinicLists.get(i).getAddress() + "]");
         }
         return clinicNames;
     }
@@ -111,6 +111,61 @@ public class userController {
 
     @GetMapping("/updateVaccineCandidateProfile")
     public String updateVaccineCandidateProfile(@ModelAttribute("vaccineCandidate") vaccineCandidate vaccineCandidate, Model model, HttpSession session){
+
+        String clinicWithAddress = vaccineCandidate.getPreferredClinic();
+        String chosenClinic = clinicWithAddress.substring(0, clinicWithAddress.indexOf('.'));
+
+        vaccineCandidate existingCandidate = candidateRepository.findByEmail(vaccineCandidate.getEmail());
+        String existingPreferredClinic = existingCandidate.getPreferredClinic();
+
+        try{
+            if(existingCandidate != null){
+                existingCandidate.setBabyName(vaccineCandidate.getBabyName());
+                existingCandidate.setFatherName(vaccineCandidate.getFatherName());
+                existingCandidate.setMotherName(vaccineCandidate.getMotherName());
+
+                if(existingCandidate.getClinicRequestStatus().equals("Pending")){
+                    session.setAttribute("message", new Message("Sorry you've already a pending request of clinic! You can't make a request until any decision of the previous one ! But your other information is updated.", "alert-danger"));
+
+                } else if (chosenClinic == null) {
+                    existingCandidate.setClinicRequestStatus(existingCandidate.getClinicRequestStatus());
+                } else if(existingPreferredClinic == null && chosenClinic != null){
+                    clinicRepository.findByName(chosenClinic).getRequests().add(existingCandidate);
+                    existingCandidate.setClinicRequestStatus("Pending");
+                    session.setAttribute("message", new Message("Your request is sent to the clinic! Wait until the clinic response.", "alert-success"));
+                } else if (existingPreferredClinic != null && !existingPreferredClinic.equals(chosenClinic)) {
+                    clinicRepository.findByName(chosenClinic).getRequests().add(existingCandidate);
+                    clinicRepository.findByName(existingPreferredClinic).getRequests().remove(existingCandidate);
+                    existingCandidate.setClinicRequestStatus("Pending");
+
+                    session.setAttribute("message", new Message("Your request for changing the clinic is processing ! Wait until the clinic response.", "alert-success"));
+                } else if (existingPreferredClinic != null && chosenClinic != null && existingPreferredClinic.equals(chosenClinic)) {
+                    existingCandidate.setPreferredClinic(existingPreferredClinic);
+                }
+
+
+
+            }
+
+            candidateRepository.save(existingCandidate);
+
+
+        }catch (Exception exception){
+            exception.printStackTrace();
+        }
+
+
+        // jodi preferred clinic change hoy taile notun clinic e request pathaite hobe
+
+
+
+
+
+        // "Your clinic"
+        // Options :
+        // - request pending for clinic Name
+        // - clinic Name
+
 
 
 

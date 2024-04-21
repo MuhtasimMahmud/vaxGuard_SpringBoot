@@ -24,6 +24,8 @@ public class vaccineCandidate{
     private String fatherName;
     private String motherName;
     private String preferredClinic;
+    private String clinicRequestStatus;
+
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<vaccines> pendingVaccines = new ArrayList<>();
@@ -93,6 +95,14 @@ public class vaccineCandidate{
 
     public void setVaccineTakingClinicName(String vaccineTakingClinicName) {
         this.vaccineTakingClinicName = vaccineTakingClinicName;
+    }
+
+    public String getClinicRequestStatus() {
+        return clinicRequestStatus;
+    }
+
+    public void setClinicRequestStatus(String clinicRequestStatus) {
+        this.clinicRequestStatus = clinicRequestStatus;
     }
 
     public String getFatherName() {

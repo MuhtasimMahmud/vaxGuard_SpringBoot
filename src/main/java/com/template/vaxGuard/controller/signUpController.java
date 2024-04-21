@@ -84,6 +84,7 @@ public class signUpController {
                 candidate.setBirthDate(pendingCandidate.getBirthDate());
                 candidate.setBirthTime(pendingCandidate.getBirthTime());
                 candidate.setBirthHospitalName(pendingCandidate.getBirthHospitalName());
+                candidate.setClinicRequestStatus("Not Requested yet");
 
                 List<vaccines> pendingVaccines = new ArrayList<>();
 

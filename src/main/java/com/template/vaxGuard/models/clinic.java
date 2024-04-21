@@ -20,6 +20,10 @@ public class clinic{
     private List<clinicVaccines> vaccinesList;
     @OneToMany
     private List<vaccineCandidate> records;
+
+    @OneToMany
+    private List<vaccineCandidate> enrolledCandidates;
+
     @OneToMany
     private List<vaccineCandidate> requests;
 
@@ -77,6 +81,15 @@ public class clinic{
 
     public void setVaccinesList(List<clinicVaccines> vaccinesList) {
         this.vaccinesList = vaccinesList;
+    }
+
+
+    public List<vaccineCandidate> getEnrolledCandidates() {
+        return enrolledCandidates;
+    }
+
+    public void setEnrolledCandidates(List<vaccineCandidate> enrolledCandidates) {
+        this.enrolledCandidates = enrolledCandidates;
     }
 
     public List<vaccineCandidate> getRecords() {
