@@ -4,6 +4,7 @@ package com.template.vaxGuard.models;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.sql.Blob;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
@@ -25,6 +26,9 @@ public class vaccineCandidate{
     private String motherName;
     private String preferredClinic;
     private String clinicRequestStatus;
+
+    @Lob
+    private Blob image;
 
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -143,5 +147,13 @@ public class vaccineCandidate{
 
     public void setTakenVaccines(List<vaccines> takenVaccines) {
         this.takenVaccines = takenVaccines;
+    }
+
+    public Blob getImage() {
+        return image;
+    }
+
+    public void setImage(Blob image) {
+        this.image = image;
     }
 }
