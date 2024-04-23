@@ -105,9 +105,7 @@ public class signUpController {
 
 
 
-
-
-                // remove from the pedingCandidateFromHospital list
+                // remove from the pendingCandidateFromHospital list
                 pendingCandidateRepository.delete(has_pendingCandidate);
 
 
