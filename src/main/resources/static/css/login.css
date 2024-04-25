@@ -6,3 +6,8 @@
 .background{
     height: 100vh;
 }
+
+form i {
+    margin-left: -30px;
+    cursor: pointer;
+}s

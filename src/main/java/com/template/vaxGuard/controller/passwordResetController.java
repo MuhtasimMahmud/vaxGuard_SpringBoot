@@ -114,7 +114,7 @@ public class passwordResetController {
 
     @GetMapping("/doResetPassword")
     public String doResetPassword(@RequestParam("password")String password, @RequestParam("RetypePassword")String retypePassword,
-                                  @RequestParam("email") String email, HttpSession session){
+                                  @RequestParam("email") String email, HttpSession session, Model model){
 
         User existingUser = userRepository.findByEmail(email);
         String url = "";
@@ -129,11 +129,8 @@ public class passwordResetController {
 
                 }else{
                     session.setAttribute("message", new Message("Sorry the password and retype password doesn't match!", "alert-danger"));
+                    model.addAttribute("email", email);
                 }
-
-            }else{
-                session.setAttribute("message", new Message("Sorry there is no user with this email!", "alert-danger"));
-
             }
         }catch (Exception exception){
             exception.printStackTrace();
