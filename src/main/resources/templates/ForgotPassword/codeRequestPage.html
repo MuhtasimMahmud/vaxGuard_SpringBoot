@@ -28,6 +28,13 @@
 
                         <h2 class="fs-6 fw-normal text-center text-secondary mb-5">Provide the email address associated with your account to recover your password.</h2>
 
+
+                        <!-- Alert message-->
+                        <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+                            <p class="text-center" th:text="${session.message.content}"> </p>
+                            <th:block th:text="${#session.removeAttribute('message')}"> </th:block>
+                        </div>
+
                         <form th:action="@{/sendCode}" >
                             <div class="row gy-2 overflow-hidden">
                                 <div class="col-12">

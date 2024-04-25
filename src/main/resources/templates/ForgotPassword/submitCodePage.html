@@ -28,12 +28,18 @@
 
                         <h2 class="fs-6 fw-normal text-center text-secondary mb-5">A code is sent to the email address : <spam th:text="${email}"> </spam> </h2>
 
-                        <form th:action="@{/doSubmitCode}" method="post">
+                        <!-- Alert message-->
+                        <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+                            <p class="text-center" th:text="${session.message.content}"> </p>
+                            <th:block th:text="${#session.removeAttribute('message')}"> </th:block>
+                        </div>
+
+                        <form th:action="@{/doSubmitCode}">
                             <div class="row gy-2 overflow-hidden">
 
 
                                 <input type="hidden" name="email" th:value="${email}" />
-                                <div class="row gy-2 overflow-hidden">
+                                <div class="row gy-2 overflow-hidden"> </div>
 
                                 <div class="col-12">
                                     <div class="form-floating">
