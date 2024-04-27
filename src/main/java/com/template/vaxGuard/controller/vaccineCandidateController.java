@@ -1,8 +1,6 @@
 package com.template.vaxGuard.controller;
 
-import com.template.vaxGuard.config.MyConfig;
 import com.template.vaxGuard.helper.Message;
-import com.template.vaxGuard.models.User;
 import com.template.vaxGuard.models.clinic;
 import com.template.vaxGuard.models.vaccineCandidate;
 import com.template.vaxGuard.repositories.UserRepository;
@@ -24,7 +22,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/vaccineCandidate")
-public class userController {
+public class vaccineCandidateController {
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -43,6 +41,8 @@ public class userController {
 
         String username = principal.getName();
         vaccineCandidate candidate = candidateRepository.findByEmail(username);
+
+        String status = candidate.getClinicRequestStatus();
 
         return candidate;
     }
@@ -119,32 +119,29 @@ public class userController {
         String existingPreferredClinic = existingCandidate.getPreferredClinic();
 
         try{
-            if(existingCandidate != null){
-                existingCandidate.setBabyName(vaccineCandidate.getBabyName());
-                existingCandidate.setFatherName(vaccineCandidate.getFatherName());
-                existingCandidate.setMotherName(vaccineCandidate.getMotherName());
+            existingCandidate.setBabyName(vaccineCandidate.getBabyName());
+            existingCandidate.setFatherName(vaccineCandidate.getFatherName());
+            existingCandidate.setMotherName(vaccineCandidate.getMotherName());
 
-                if(existingCandidate.getClinicRequestStatus().equals("Pending")){
-                    session.setAttribute("message", new Message("Sorry you've already a pending request of clinic! You can't make a request until any decision of the previous one ! But your other information is updated.", "alert-danger"));
+            if(existingCandidate.getClinicRequestStatus().equals("Pending")){
+                session.setAttribute("message", new Message("Sorry you've already a pending request of clinic! You can't make a request until any decision of the previous one ! But your other information is updated.", "alert-danger"));
 
-                } else if (chosenClinic == null) {
-                    existingCandidate.setClinicRequestStatus(existingCandidate.getClinicRequestStatus());
-                } else if(existingPreferredClinic == null && chosenClinic != null){
-                    clinicRepository.findByName(chosenClinic).getRequests().add(existingCandidate);
-                    existingCandidate.setClinicRequestStatus("Pending");
-                    session.setAttribute("message", new Message("Your request is sent to the clinic! Wait until the clinic response.", "alert-success"));
-                } else if (existingPreferredClinic != null && !existingPreferredClinic.equals(chosenClinic)) {
-                    clinicRepository.findByName(chosenClinic).getRequests().add(existingCandidate);
-                    clinicRepository.findByName(existingPreferredClinic).getRequests().remove(existingCandidate);
-                    existingCandidate.setClinicRequestStatus("Pending");
+            } else if (chosenClinic.equals("Select your preferred clinic")) {
+                existingCandidate.setClinicRequestStatus(existingCandidate.getClinicRequestStatus());
+                // Nothing to do about clinic preference because user doesn't choose anything about clinic now.
 
-                    session.setAttribute("message", new Message("Your request for changing the clinic is processing ! Wait until the clinic response.", "alert-success"));
-                } else if (existingPreferredClinic != null && chosenClinic != null && existingPreferredClinic.equals(chosenClinic)) {
-                    existingCandidate.setPreferredClinic(existingPreferredClinic);
-                }
+            } else if(existingPreferredClinic == null && !chosenClinic.equals("Select your preferred clinic")){
+                clinicRepository.findByName(chosenClinic).getRequests().add(existingCandidate);
+                existingCandidate.setClinicRequestStatus("Pending");
+                session.setAttribute("message", new Message("Your request is sent to the clinic! Wait until the clinic response.", "alert-success"));
+            } else if (existingPreferredClinic.equals("Not Requested yet") && !existingPreferredClinic.equals(chosenClinic)) {
+                clinicRepository.findByName(chosenClinic).getRequests().add(existingCandidate);
+                clinicRepository.findByName(existingPreferredClinic).getRequests().remove(existingCandidate);
+                existingCandidate.setClinicRequestStatus("Pending");
 
-
-
+                session.setAttribute("message", new Message("Your request for changing the clinic is processing ! Wait until the clinic response.", "alert-success"));
+            } else if (existingPreferredClinic != null && chosenClinic != null && existingPreferredClinic.equals(chosenClinic)) {
+                existingCandidate.setPreferredClinic(existingPreferredClinic);
             }
 
             candidateRepository.save(existingCandidate);

@@ -136,7 +136,6 @@ public class passwordResetController {
             exception.printStackTrace();
         }
 
-
         return "ForgotPassword/resetPasswordPage";
     }
 
